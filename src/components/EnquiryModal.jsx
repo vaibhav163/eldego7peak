@@ -277,8 +277,8 @@ export default function EnquiryModal({ config, onClose }) {
             </p>
             <p style={{ fontSize: 12, color: C.textMuted }}>
               Can't wait? Call us directly at{" "}
-              <a href="tel:9990800500" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>
-                +91 99908 00500
+              <a href="tel:8799756026" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>
+                +91 87997 56026
               </a>
             </p>
             <button
