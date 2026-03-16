@@ -64,7 +64,7 @@ export const FLOOR_PLANS = [
 
 export const AMENITIES_MAIN = [
   {
-    img: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=900&q=80",
+    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=900&q=80",
     title: "Resort-Style Pools",
     sub: "4 Unique Pools",
     wide: true,
@@ -113,7 +113,7 @@ export const AMENITIES_LIST = [
 ];
 
 export const GALLERY_IMGS = [
-  { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=85", alt: "Living Room" },
+  { src: "https://ibb.co/KzBFhjPn", alt: "Living Room" },
   { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=85", alt: "Bedroom" },
   { src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85", alt: "Kitchen" },
   { src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=85", alt: "Pool View" },

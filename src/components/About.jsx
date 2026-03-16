@@ -1,6 +1,7 @@
 import C from "../constants/theme";
 import { ABOUT_FEATS } from "../constants/data";
 import { Reveal, SectionLabel, SectionTitle, DividerLine } from "./UI";
+import Image1 from "../../public/slider1.jpg";
 
 export default function About() {
   return (
@@ -36,7 +37,7 @@ export default function About() {
                 }}
               />
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=85"
+                src={Image1}
                 alt="Luxury Interior"
                 style={{ width: "100%", height: 620, objectFit: "cover", display: "block", position: "relative", zIndex: 1 }}
               />

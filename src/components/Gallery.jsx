@@ -2,6 +2,15 @@ import C from "../constants/theme";
 import { GALLERY_IMGS } from "../constants/data";
 import { Reveal, SectionLabel, SectionTitle } from "./UI";
 
+// import Download2 from "../../public/download2.jpg";
+// import Download3 from "../../public/download3.jpg";
+// import Download4 from "../../public/download4.jpg";
+// import Download5 from "../../public/download5.jpg";
+// import Download6 from "../../public/download6.jpg";
+// import Download7 from "../../public/download7.jpg";
+// import Download8 from "../../public/download8.jpg";
+// import Download9 from "../../public/download9.jpg";
+
 /* Each item's CSS grid-area for the 12-column layout */
 const GRID_AREAS = [
   "1 / 1 / 2 / 6",
