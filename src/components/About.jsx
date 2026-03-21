@@ -41,20 +41,7 @@ export default function About() {
                 alt="Luxury Interior"
                 style={{ width: "100%", height: 620, objectFit: "cover", display: "block", position: "relative", zIndex: 1 }}
               />
-              <div
-                style={{
-                  position: "absolute", bottom: 0, right: 0,
-                  background: C.accent, color: C.white,
-                  padding: "24px 32px", zIndex: 2,
-                }}
-              >
-                <p style={{ fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", opacity: 0.8, marginBottom: 4 }}>
-                  Possession
-                </p>
-                <strong style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22 }}>
-                  2027 Onwards
-                </strong>
-              </div>
+              {/*    */}
             </div>
           </Reveal>
 
