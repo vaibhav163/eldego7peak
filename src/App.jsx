@@ -19,6 +19,7 @@ export default function App() {
 
   const openEnquiry  = useCallback((config) => setModalConfig(config), []);
   const closeEnquiry = useCallback(() => setModalConfig(null), []);
+  
 
   return (
     <>
