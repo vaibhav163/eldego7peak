@@ -103,6 +103,7 @@ export default function Navbar() {
               textDecoration: "none",
               transition: "background 0.3s",
             }}
+            onClick={return gtag_report_conversion('http://eldecogrp.com');}
           >
             📞 8799756026
           </a>

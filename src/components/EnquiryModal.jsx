@@ -236,6 +236,7 @@ export default function EnquiryModal({ config, onClose }) {
             <button
               onClick={handleSubmit}
               disabled={status === "sending"}
+              onClick={() => return gtag_report_conversion('http://eldecogrp.com');}
               style={{
                 width: "100%",
                 background: status === "sending" ? C.textMuted : C.charcoal,
