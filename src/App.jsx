@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 import GlobalStyles    from "./components/GlobalStyles";
 import Navbar          from "./components/Navbar";
@@ -10,7 +10,7 @@ import Amenities       from "./components/Amenities";
 import Gallery         from "./components/Gallery";
 import DeveloperStrip  from "./components/DeveloperStrip";
 import Location        from "./components/Location";
-import Footer          from "./ccomponents/Footer";
+import Footer          from "./components/Footer";
 import FloatingBar     from "./components/FloatingBar";
 import EnquiryModal    from "./components/EnquiryModal";
 
@@ -38,6 +38,7 @@ export default function App() {
       {modalConfig !== null && (
         <EnquiryModal config={modalConfig} onClose={closeEnquiry} />
       )}
+      <Analytics />
     </>
   );
 }
