@@ -24,6 +24,7 @@ export default function App() {
 
   return (
     <>
+    <Analytics />
       <GlobalStyles />
       <Navbar />
       <Hero           onEnquire={openEnquiry} />
