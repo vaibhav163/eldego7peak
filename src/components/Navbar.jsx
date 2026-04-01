@@ -90,7 +90,7 @@ export default function Navbar() {
         {/* Right actions */}
         <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
           <a
-            href="tel:8799756026"
+            href="tel:9899911553"
             className="nav-cta-link"
             style={{
               background: C.charcoal,
@@ -104,7 +104,7 @@ export default function Navbar() {
               transition: "background 0.3s",
             }}
           >
-            📞 8799756026
+            📞 9899911553
           </a>
           <button
             onClick={() => setMobileOpen((o) => !o)}

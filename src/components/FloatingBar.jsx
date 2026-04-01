@@ -50,7 +50,7 @@ export default function FloatingBar({ onEnquire }) {
         {/* Actions */}
         <div style={{ display: "flex", gap: 12 }}>
           <a
-            href="tel:8799756026"
+            href="tel:9899911553"
             className="fbar-phone"
             style={{
               padding: "11px 24px",
