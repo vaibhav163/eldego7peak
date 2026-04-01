@@ -199,7 +199,7 @@ export default function EnquiryModal({ config, onClose }) {
               {errors.phone && <span style={errorTextStyle}>{errors.phone}</span>}
             </div>
 
-            {/* Email */}
+            {/* Email
             <div style={{ marginBottom: 18 }}>
               <label style={labelStyle}>Email Address <span style={{ opacity: 0.5, fontSize: 9 }}>(optional)</span></label>
               <input
@@ -209,7 +209,7 @@ export default function EnquiryModal({ config, onClose }) {
                 style={inputStyle("email")}
               />
               {errors.email && <span style={errorTextStyle}>{errors.email}</span>}
-            </div>
+            </div> */}
 
             {/* Config */}
             <div style={{ marginBottom: 28 }}>
