@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Analytics } from "@vercel/analytics/next"
 
 import GlobalStyles    from "./components/GlobalStyles";
@@ -20,10 +20,13 @@ export default function App() {
 
   const openEnquiry  = useCallback((config) => setModalConfig(config), []);
   const closeEnquiry = useCallback(() => setModalConfig(null), []);
-  
+  useEffect(() => {
+      openEnquiry();
+    }, [])
 
   return (
     <>
+    
     <Analytics />
       <GlobalStyles />
       <Navbar />
