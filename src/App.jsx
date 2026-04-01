@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 import GlobalStyles    from "./components/GlobalStyles";
 import Navbar          from "./components/Navbar";
