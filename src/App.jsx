@@ -10,7 +10,7 @@ import Amenities       from "./components/Amenities";
 import Gallery         from "./components/Gallery";
 import DeveloperStrip  from "./components/DeveloperStrip";
 import Location        from "./components/Location";
-import Footer          from "./ccomponents/Footer";
+import Footer          from "./components/Footer";
 import FloatingBar     from "./components/FloatingBar";
 import EnquiryModal    from "./components/EnquiryModal";
 

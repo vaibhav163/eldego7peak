@@ -34,7 +34,7 @@ function validate(form) {
   const errors = {};
   if (!form.name.trim())                        errors.name  = "Name is required";
   if (!form.phone.trim())                       errors.phone = "Phone is required";
-  else if (!/^[0-9+\s\-]{7,15}$/.test(form.phone.trim())) errors.phone = "Enter a valid phone number";
+  else if (!/^\+?[0-9\s-]{7,15}$/.test(form.phone.trim())) errors.phone = "Enter a valid phone number";
   if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errors.email = "Enter a valid email";
   return errors;
 }
@@ -236,7 +236,6 @@ export default function EnquiryModal({ config, onClose }) {
             <button
               onClick={handleSubmit}
               disabled={status === "sending"}
-              onClick={() => return gtag_report_conversion('http://eldecogrp.com');}
               style={{
                 width: "100%",
                 background: status === "sending" ? C.textMuted : C.charcoal,

@@ -64,8 +64,7 @@ export default function FloatingBar({ onEnquire }) {
               display: "flex", alignItems: "center", gap: 8,
               transition: "all 0.3s",
             }}
-            onClick={() => return gtag_report_conversion('http://eldecogrp.com');}
-          >
+            >
             📞 Call Us
           </a>
           <button
