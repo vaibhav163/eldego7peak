@@ -1454,7 +1454,7 @@ export default function EldecoEchoesOfEden() {
         <div className="header fixed">
           <div className="container-fluid">
             <div className="logo">
-              <img src=".\eldeco-echoes\images\eldeco.webp" alt="Eldeco" />
+              <img src="https://image2url.com/r2/default/images/1775586662619-102eca96-9bcb-43ca-8d14-bb712e06db91.webp" alt="Eldeco" />
             </div>
 
             <div className="menu-section">
@@ -1594,7 +1594,7 @@ export default function EldecoEchoesOfEden() {
         <div
           className="w-100 padding position-relative overflow-hidden amenitiesWrapper bg-image"
           id="amenities"
-          style={{ backgroundImage: "url(./eldeco-echoes/images/amen.jpeg)", height: "auto" }}
+          style={{ backgroundImage: "url(https://image2url.com/r2/default/images/1775586582204-3bc6ed56-12e2-41ed-a89c-7c36e3bb2384.jpeg)", height: "auto" }}
         >
           <div className="container-lg">
             <div className="headingContainer" data-aos="fade-up">
@@ -1636,8 +1636,8 @@ export default function EldecoEchoesOfEden() {
             <div className="fpContainer" data-aos="fade-up">
               <div className="row g-4 justify-content-center">
                 {[
-                  { type: "3 BHK", img: "./eldeco-echoes/images/3-b.webp", alt: "3bhk" },
-                  { type: "4 BHK", img: "./eldeco-echoes/images/4-b.webp", alt: "4bhk" },
+                  { type: "3 BHK", img: "https://image2url.com/r2/default/images/1775586904581-ab466bb8-ff75-4271-b4e6-014cda43391b.webp", alt: "3bhk" },
+                  { type: "4 BHK", img: "https://image2url.com/r2/default/images/1775587018708-732efb18-f374-41d6-a387-5fd471436f4a.webp", alt: "4bhk" },
                 ].map(({ type, img, alt }) => (
                   <div key={type} className="col-lg-4 col-md-6 fpBox">
                     <div className="inner">
@@ -1674,7 +1674,7 @@ export default function EldecoEchoesOfEden() {
         {/* ── Tagline ── */}
         <div
           className="w-100 padding position-relative overflow-hidden bg-image"
-          style={{ backgroundImage: "url(./eldeco-echoes/images/bgg.jpeg)", height: "60vh" }}
+          style={{ backgroundImage: "url(https://image2url.com/r2/default/images/1775586761241-289b5b68-42c4-483d-bb97-2faf6d099777.jpeg)", height: "60vh" }}
         >
           <div className="container-lg h-100 d-flex align-items-center justify-content-center">
             <div className="tagline" data-aos="fade-up">
@@ -1771,7 +1771,7 @@ export default function EldecoEchoesOfEden() {
                   >
                     <img
                       style={{ filter: "blur(7px)" }}
-                      src="./eldeco-echoes/images/loc.jpg"
+                      src="https://image2url.com/r2/default/images/1775587421917-1e735c16-3f2c-4ac9-a17d-7e80885fc2d3.png"
                       className="h-100 object-fit-cover locationmap"
                       alt="Location Map"
                     />
@@ -1853,7 +1853,7 @@ export default function EldecoEchoesOfEden() {
                 </div>
 
                 <div className="col-lg-5 form-img">
-                  <img src="./eldeco-echoes/images/side.jpg" className="h-100 object-cover" alt="" />
+                  <img src="https://image2url.com/r2/default/images/1775587314466-b2f40111-eef1-4bdb-9527-af51964e23cb.png" className="h-100 object-cover" alt="" />
                 </div>
               </div>
             </div>
@@ -1881,7 +1881,7 @@ export default function EldecoEchoesOfEden() {
               </div>
               <div className="col-md-6">
                 <p style={{ color: "#fff" }}>
-                  <img src="./eldeco-echoes/images/qr.webp" style={{ width: "100px" }} alt="QR Code" />
+                  <img src="https://image2url.com/r2/default/images/1775587246132-0ab67f5b-cfa4-4085-b649-7635e72b76f3.png" style={{ width: "100px" }} alt="QR Code" />
                 </p>
               </div>
             </div>
