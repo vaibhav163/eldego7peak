@@ -63,7 +63,7 @@
 //   );
 // }
 import { useState, useEffect, useCallback } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Router , Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
 import ExternalProject from "./components/ExternalProject";
@@ -96,7 +96,7 @@ function Home({ onEnquire }) {
       <Footer />
       <FloatingBar onEnquire={onEnquire} />
       <FloatingWhatsApp
-        phoneNumber="919990780499"
+        phoneNumber="919899911553"
         message="Hi, I am interested in your services"
       />
     </>
@@ -121,12 +121,12 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-
+      {/* <Router> */}
       <Routes>
         <Route path="/" element={<Home onEnquire={openEnquiry} />} />
-        <Route path="/eoe" element={<Eoe />} />
+        <Route path="/eoe" element={<Eoe/>} />
       </Routes>
-
+      {/* </Router> */}
       <Analytics />
 
       {modalConfig && (
