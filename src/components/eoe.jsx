@@ -932,6 +932,19 @@
 //   );
 // }
 import { useState, useEffect, useRef } from "react";
+import Ame1 from "../../eldeco-echoes/images/ame-01.jpg";
+import Ame2 from "../../eldeco-echoes/images/ame-02.webp";
+import Ame3 from "../../eldeco-echoes/images/ame-03.jpg";
+import Ame4 from "../../eldeco-echoes/images/ame-04.webp";
+import Ame5 from "../../eldeco-echoes/images/ame-05.jpg";
+import Ame6 from "../../eldeco-echoes/images/ame-06.webp";  
+import Ame7 from "../../eldeco-echoes/images/ame-07.jpg";
+import Ame9 from "../../eldeco-echoes/images/ame-09.jpg";
+import G1 from "../../eldeco-echoes/images/g1.jpg";
+import G2 from "../../eldeco-echoes/images/g2.jpg";
+import G3 from "../../eldeco-echoes/images/g3.jpg";
+import G4 from "../../eldeco-echoes/images/g4.jpg";
+
 
 /* ─── Inline styles ─── */
 const styles = `
@@ -1415,21 +1428,21 @@ export default function EldecoEchoesOfEden() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const amenities = [
-    { img: "eldeco-echoes/images/ame-01.jpg",  label: "Jogging Track"   },
-    { img: "eldeco-echoes/images/ame-02.webp", label: "Yoga"            },
-    { img: "eldeco-echoes/images/ame-03.jpg",  label: "The Sports Block" },
-    { img: "eldeco-echoes/images/ame-04.webp", label: "Play Ground"     },
-    { img: "eldeco-echoes/images/ame-05.jpg",  label: "Barbecue Area"   },
-    { img: "eldeco-echoes/images/ame-06.webp", label: "Kids Play Area"  },
-    { img: "eldeco-echoes/images/ame-07.jpg",  label: "Swimming Pool"   },
-    { img: "eldeco-echoes/images/ame-09.jpg",  label: "Gymnasium"       },
+    { img: Ame1,  label: "Jogging Track"   },
+    { img: Ame2, label: "Yoga"            },
+    { img: Ame3,  label: "The Sports Block" },
+    { img: Ame4, label: "Play Ground"     },
+    { img: Ame5,  label: "Barbecue Area"   },
+    { img: Ame6, label: "Kids Play Area"  },
+    { img: Ame7,  label: "Swimming Pool"   },
+    { img: Ame9,  label: "Gymnasium"       },
   ];
 
   const galleryImages = [
-    "eldeco-echoes/images/g1.jpg",
-    "eldeco-echoes/images/g2.jpg",
-    "eldeco-echoes/images/g3.jpg",
-    "eldeco-echoes/images/g4.jpg",
+    G1,
+    G2,
+    G3,
+    G4,
   ];
 
   return (
