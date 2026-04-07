@@ -62,7 +62,7 @@
 //     </>
 //   );
 // }
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Router , Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -85,7 +85,7 @@ import Eoe from "./components/eoe";
 function Home({ onEnquire }) {
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
        <Hero onEnquire={onEnquire} />
       <About />
       <FloorPlans onEnquire={onEnquire} />
@@ -98,7 +98,8 @@ function Home({ onEnquire }) {
       <FloatingWhatsApp
         phoneNumber="919899911553"
         message="Hi, I am interested in your services"
-      />
+      /> */}
+      <Eoe />
     </>
   );
 }
