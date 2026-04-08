@@ -1527,7 +1527,7 @@ export default function EldecoEchoesOfEden() {
         <div id="banner" className="banner">
           <div className="h-100">
             <picture>
-              <source media="(max-width:560px)" srcSet="eldeco-echoes/images/mobile.jpeg" />
+              <source media="(max-width:560px)" srcSet="https://image2url.com/r2/default/images/1775610184726-b606e94f-94a4-4684-8428-a99cfa03cdee.jpg" />
               <img src="https://image2url.com/r2/default/images/1775586327195-07d0d1b3-3e08-44f6-8a4f-05f1bdd54b58.jpeg" className="h-100 object-cover" alt="Banner" />
             </picture>
           </div>
