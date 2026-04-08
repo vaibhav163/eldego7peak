@@ -1868,7 +1868,7 @@ export default function EldecoEchoesOfEden() {
                 <p style={{ color: "#fff" }}>
                   Project RERA No.: UPRERAPRJ125342/02/2026
                   <br />
-                  Agent RERA No.: UPRERAAGT10202
+                  {/* Agent RERA No.: UPRERAAGT10202 */}
                   <br />
                   <a href="https://up-rera.in/projects/" target="_blank" rel="noreferrer">
                     https://up-rera.in/projects/
