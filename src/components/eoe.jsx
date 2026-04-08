@@ -422,7 +422,7 @@
 //               <ul className="list-inline justify-content-end align-items-center">
 //                 <li>
 //                   <a
-//                     href="tel:9355019172"
+//                     href="tel:9899911553"
 //                     style={{
 //                       backgroundColor: "var(--whatsapp)",
 //                       color: "#fff",
@@ -863,7 +863,7 @@
 //               <i className="fab fa-whatsapp" /> WhatsApp
 //             </strong>
 //           </a>
-//           <a href="tel:9355019172">
+//           <a href="tel:9899911553">
 //             <strong>
 //               <i className="fa fa-phone" /> Call
 //             </strong>
@@ -1484,7 +1484,7 @@ export default function EldecoEchoesOfEden() {
               <ul className="list-inline justify-content-end align-items-center">
                 <li>
                   <a
-                    href="tel:9355019172"
+                    href="tel:9899911553"
                     style={{
                       backgroundColor: "var(--whatsapp)", color: "#fff",
                       padding: "6px", marginLeft: "1.5rem", borderRadius: "40px",
@@ -1904,7 +1904,7 @@ export default function EldecoEchoesOfEden() {
           >
             <strong><i className="fab fa-whatsapp" /> WhatsApp</strong>
           </a>
-          <a href="tel:9355019172">
+          <a href="tel:9899911553">
             <strong><i className="fa fa-phone" /> Call</strong>
           </a>
           <button style={{ all: "unset", cursor: "pointer" }} onClick={() => setShowModal(true)}>
