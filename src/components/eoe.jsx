@@ -238,7 +238,7 @@
 //         setStatus("✅ Enquiry sent successfully!");
 //         setValues({ name: "", mobile: "", email: "" });
 //         window.open(
-//           "https://wa.me/919990780499?text=Hi, I just submitted an enquiry",
+//           "https://wa.me/919899911553?text=Hi, I just submitted an enquiry",
 //           "_blank"
 //         );
 //       },
@@ -944,6 +944,18 @@ import G1 from "../../eldeco-echoes/images/g1.jpg";
 import G2 from "../../eldeco-echoes/images/g2.jpg";
 import G3 from "../../eldeco-echoes/images/g3.jpg";
 import G4 from "../../eldeco-echoes/images/g4.jpg";
+import Ab from "../../eldeco-echoes/images/3-b.webp";
+import Bb from "../../eldeco-echoes/images/4-b.webp";
+import BannerMobile from "../../eldeco-echoes/images/mobile.jpeg";
+import BannerDesktop from "../../eldeco-echoes/images/desktop.jpeg";
+import AmenityBg from "../../eldeco-echoes/images/amen.jpeg";
+import TaglineBg from "../../eldeco-echoes/images/bgg.jpeg";
+import FormSide from "../../eldeco-echoes/images/side.jpg";
+import Logo1 from "../../eldeco-echoes/images/eldeco.webp";
+import Download from "../../eldeco-echoes/images/download.gif";
+import Loc from "../../eldeco-echoes/images/loc.jpg";
+import Side from "../../eldeco-echoes/images/side.jpg";
+import QR from "../../eldeco-echoes/images/qr.webp";
 
 
 /* ─── Inline styles ─── */
@@ -1454,7 +1466,7 @@ export default function EldecoEchoesOfEden() {
         <div className="header fixed">
           <div className="container-fluid">
             <div className="logo">
-              <img src="https://image2url.com/r2/default/images/1775586662619-102eca96-9bcb-43ca-8d14-bb712e06db91.webp" alt="Eldeco" />
+              <img src={Logo1} alt="Eldeco" />
             </div>
 
             <div className="menu-section">
@@ -1527,8 +1539,8 @@ export default function EldecoEchoesOfEden() {
         <div id="banner" className="banner">
           <div className="h-100">
             <picture>
-              <source media="(max-width:560px)" srcSet="https://image2url.com/r2/default/images/1775610184726-b606e94f-94a4-4684-8428-a99cfa03cdee.jpg" />
-              <img src="https://image2url.com/r2/default/images/1775586327195-07d0d1b3-3e08-44f6-8a4f-05f1bdd54b58.jpeg" className="h-100 object-cover" alt="Banner" />
+              <source media="(max-width:560px)" srcSet={BannerMobile} />
+              <img src={BannerDesktop} className="h-100 object-cover" alt="Banner" />
             </picture>
           </div>
         </div>
@@ -1594,7 +1606,7 @@ export default function EldecoEchoesOfEden() {
         <div
           className="w-100 padding position-relative overflow-hidden amenitiesWrapper bg-image"
           id="amenities"
-          style={{ backgroundImage: "url(https://image2url.com/r2/default/images/1775586582204-3bc6ed56-12e2-41ed-a89c-7c36e3bb2384.jpeg)", height: "auto" }}
+          style={{ backgroundImage: `url(${AmenityBg})`, height: "auto" }}
         >
           <div className="container-lg">
             <div className="headingContainer" data-aos="fade-up">
@@ -1674,7 +1686,7 @@ export default function EldecoEchoesOfEden() {
         {/* ── Tagline ── */}
         <div
           className="w-100 padding position-relative overflow-hidden bg-image"
-          style={{ backgroundImage: "url(https://image2url.com/r2/default/images/1775586761241-289b5b68-42c4-483d-bb97-2faf6d099777.jpeg)", height: "60vh" }}
+          style={{ backgroundImage: `url(${TaglineBg})`, height: "60vh" }}
         >
           <div className="container-lg h-100 d-flex align-items-center justify-content-center">
             <div className="tagline" data-aos="fade-up">
@@ -1771,7 +1783,7 @@ export default function EldecoEchoesOfEden() {
                   >
                     <img
                       style={{ filter: "blur(7px)" }}
-                      src="https://image2url.com/r2/default/images/1775587421917-1e735c16-3f2c-4ac9-a17d-7e80885fc2d3.png"
+                      src={Loc}
                       className="h-100 object-fit-cover locationmap"
                       alt="Location Map"
                     />
@@ -1853,7 +1865,7 @@ export default function EldecoEchoesOfEden() {
                 </div>
 
                 <div className="col-lg-5 form-img">
-                  <img src="https://image2url.com/r2/default/images/1775587314466-b2f40111-eef1-4bdb-9527-af51964e23cb.png" className="h-100 object-cover" alt="" />
+                  <img src={FormSide} className="h-100 object-cover" alt="" />
                 </div>
               </div>
             </div>
@@ -1870,6 +1882,9 @@ export default function EldecoEchoesOfEden() {
                   <br />
                   {/* Agent RERA No.: UPRERAAGT10202 */}
                   <br />
+                  <p>Disclaimer - Authorized marketing partner with Eldeco Builders. The content provided on this website is for information purposes only and does not constitute an offer to avail any service. The prices mentioned are subject to change without prior notice, and the availability of properties mentioned is not guaranteed.
+
+The images displayed on the website are for representation purposes only and may not reflect the actual properties accurately. Please note that this is the official website of an authorized marketing partner. We may share data with Real Estate Regulatory Authority (RERA) registered brokers/companies for further processing as required. We may also send updates and information to the mobile number or email ID registered with us. All rights reserved. The content, design, and information on this website are protected by copyright and other intellectual property rights. Any unauthorized use or reproduction of the content may violate applicable laws. For accurate and up-to-date information regarding services, pricing, availability, and any other details, it is advisable to contact us directly through the provided contact information on this website. Thank you for visiting our website.</p>
                   <a href="https://up-rera.in/projects/" target="_blank" rel="noreferrer">
                     https://up-rera.in/projects/
                   </a>
@@ -1881,7 +1896,7 @@ export default function EldecoEchoesOfEden() {
               </div>
               <div className="col-md-6">
                 <p style={{ color: "#fff" }}>
-                  <img src="https://image2url.com/r2/default/images/1775587246132-0ab67f5b-cfa4-4085-b649-7635e72b76f3.png" style={{ width: "100px" }} alt="QR Code" />
+                  <img src={QR} style={{ width: "100px" }} alt="QR Code" />
                 </p>
               </div>
             </div>
