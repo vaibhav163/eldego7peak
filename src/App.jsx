@@ -81,7 +81,7 @@ import Footer from "./components/Footer";
 import FloatingBar from "./components/FloatingBar";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Eoe from "./components/eoe";
-import Privacypolicy from "./components/Privactpolicy";
+import Privacypolicy from "./components/privacypolicy";
 
 function Home({ onEnquire }) {
   return (
@@ -127,7 +127,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home onEnquire={openEnquiry} />} />
         <Route path="/eoe" element={<Eoe/>} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/privacy-policy" element={<Privacypolicy />} />
       </Routes>
       {/* </Router> */}
       <Analytics />

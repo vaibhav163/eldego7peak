@@ -957,7 +957,7 @@ import Download from "../../eldeco-echoes/images/download.gif";
 import Loc from "../../eldeco-echoes/images/loc.jpg";
 import Side from "../../eldeco-echoes/images/side.jpg";
 import QR from "../../eldeco-echoes/images/qr.webp";
-import Privacy from "./Privactpolicy.jsx";
+import Privacy from "./privacypolicy.jsx";
 import { Router } from "react-router-dom";
 
 
