@@ -932,6 +932,7 @@
 //   );
 // }
 import { useState, useEffect, useRef } from "react";
+import { Link } from 'react-router-dom';
 import Ame1 from "../../eldeco-echoes/images/ame-01.jpg";
 import Ame2 from "../../eldeco-echoes/images/ame-02.webp";
 import Ame3 from "../../eldeco-echoes/images/ame-03.jpg";
@@ -957,6 +958,7 @@ import Loc from "../../eldeco-echoes/images/loc.jpg";
 import Side from "../../eldeco-echoes/images/side.jpg";
 import QR from "../../eldeco-echoes/images/qr.webp";
 import Privacy from "./Privactpolicy.jsx";
+import { Router } from "react-router-dom";
 
 
 /* ─── Inline styles ─── */
@@ -1892,7 +1894,10 @@ The images displayed on the website are for representation purposes only and may
                   </a>
                   <br />
                   <a style={{ color: "#fff" }} href="privacy-policy" target="_blank" rel="noreferrer">
-                    <b>Disclaimer &amp; Privacy Policy</b>
+                    {/* <RouterLink to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
+                      <b>Disclaimer &amp; Privacy Policy</b>
+                    </RouterLink> */}
+                     <Link to="/privacy-policy">Disclaimer &amp; Privacy Policy</Link>
                   </a>
                 </p>
               </div>

@@ -1,91 +1,95 @@
-import React from 'react'
+import React from "react";
 
-const Privactpolicy = () => {
+export default function PrivacyPolicy() {
   return (
-    <div>
-      Privacy Policy
+    <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">Privacy Policy</h1>
+        <p className="text-sm text-gray-500 mb-6">Last Updated: [Add Date]</p>
 
-Last Updated: [23-04-2026]
+        <Section title="1. Information We Collect">
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Name</li>
+            <li>Phone number</li>
+            <li>Email address</li>
+            <li>Location details</li>
+            <li>Property preferences</li>
+            <li>Any other information you provide</li>
+          </ul>
+        </Section>
 
-At nine wall reality, we are committed to protecting your personal information and ensuring transparency in how we collect, use, and safeguard your data.
+        <Section title="2. How We Use Your Information">
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Respond to inquiries</li>
+            <li>Schedule site visits</li>
+            <li>Share project updates & offers</li>
+            <li>Improve services & marketing</li>
+            <li>Contact via call, SMS, WhatsApp, email</li>
+          </ul>
+        </Section>
 
-1. Information We Collect
+        <Section title="3. Data Protection & Security">
+          <p>
+            We use secure servers, restricted access, and monitoring systems to
+            protect your data. However, no method of transmission is 100% secure.
+          </p>
+        </Section>
 
-We may collect the following types of information when you visit our website or fill out forms:
+        <Section title="4. Sharing of Information">
+          <p>
+            We do not sell or rent your data. Information may be shared only with
+            trusted partners or when required by law.
+          </p>
+        </Section>
 
-Name
-Phone number
-Email address
-Location details
-Property preferences
-Any other information you voluntarily provide
-2. How We Use Your Information
+        <Section title="5. Cookies & Tracking">
+          <p>
+            Cookies help improve user experience and analyze traffic. You can
+            disable cookies in your browser settings.
+          </p>
+        </Section>
 
-Your data is used for:
+        <Section title="6. Third-Party Links">
+          <p>
+            We are not responsible for privacy practices of external websites.
+          </p>
+        </Section>
 
-Responding to your inquiries
-Scheduling site visits or consultations
-Sharing project details, offers, and updates
-Improving our services and marketing campaigns
-Contacting you via call, SMS, WhatsApp, or email
-3. Data Protection & Security
+        <Section title="7. Your Consent">
+          <p>
+            By using our website, you agree to this Privacy Policy.
+          </p>
+        </Section>
 
-We take appropriate security measures to protect your personal data:
+        <Section title="8. Your Rights">
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Access your data</li>
+            <li>Request correction or deletion</li>
+            <li>Opt-out of marketing</li>
+          </ul>
+        </Section>
 
-Secure servers and encrypted data handling
-Restricted access to authorized personnel only
-Regular monitoring to prevent unauthorized access
+        <Section title="9. Updates to This Policy">
+          <p>
+            We may update this policy anytime. Changes will be posted here.
+          </p>
+        </Section>
 
-However, no online transmission is 100% secure, so we cannot guarantee absolute security.
-
-4. Sharing of Information
-
-We do not sell, trade, or rent your personal data.
-We may share your information only with:
-
-Trusted partners or developers (for project-related communication)
-Legal authorities if required by law
-5. Cookies & Tracking
-
-Our website may use cookies to:
-
-Enhance user experience
-Analyze website traffic
-Improve marketing performance
-
-You can disable cookies through your browser settings.
-
-6. Third-Party Links
-
-Our website may contain links to external websites. We are not responsible for their privacy practices.
-
-7. Your Consent
-
-By using our website, you consent to our Privacy Policy and agree to our data practices.
-
-8. Your Rights
-
-You have the right to:
-
-Request access to your data
-Ask for corrections or deletion
-Opt out of marketing communications anytime
-
-To do so, contact us at: [Your Email / Phone]
-
-9. Updates to This Policy
-
-We may update this Privacy Policy from time to time. Changes will be posted on this page.
-
-10. Contact Us
-
-If you have any questions regarding this Privacy Policy, please contact:
-
-Email: ninewallreality@gmail.com
-Phone: 9821598950
-Address: Add: office no. - S-09 , 6th floor , Urbtech NPX, Sec 153, Noida , UP 201310
+        <Section title="10. Contact Us">
+          <p>Email: [ninewallreality@gmail.com]</p>
+          <p>Phone: [9831598950]</p>
+          <p>Address: [office no. - S-09 , 6th floor , Urbtech NPX, Sec 153, Noida , UP 201310]</p>
+        </Section>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Privactpolicy
+function Section({ title, children }) {
+  return (
+    <div className="mb-6">
+      <h2 className="text-xl font-semibold mb-2 text-gray-700">{title}</h2>
+      <div className="text-gray-600">{children}</div>
+    </div>
+  );
+}
