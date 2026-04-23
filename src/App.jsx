@@ -63,7 +63,7 @@
 //   );
 // }
 import { useState, useCallback } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Router , Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
 import ExternalProject from "./components/ExternalProject";
@@ -123,13 +123,13 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      <Router>
-  <Routes>
-    <Route path="/" element={<Home onEnquire={openEnquiry} />} />
-    <Route path="/eoe" element={<Eoe />} />
-    <Route path="/privacy-policy" element={<Privacypolicy />} />
-  </Routes>
-</Router>
+      {/* <Router> */}
+      <Routes>
+        <Route path="/" element={<Home onEnquire={openEnquiry} />} />
+        <Route path="/eoe" element={<Eoe/>} />
+        <Route path="/privacy-policy" element={<Privacypolicy />} />
+      </Routes>
+      {/* </Router> */}
       <Analytics />
 
       {modalConfig && (

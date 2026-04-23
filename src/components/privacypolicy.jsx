@@ -2,7 +2,7 @@ import React from 'react'
 
 const Privacypolicy = () => {
   return (
-    <div>
+    <div style={{ color: "black" , backgroundColor: "white" , padding: "20px" , borderRadius: "10px" , maxWidth: "800px" , margin: "0 auto" }}>
       Privacy Policy
 
 Last Updated: [23-04-2026]
