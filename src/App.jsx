@@ -63,7 +63,7 @@
 //   );
 // }
 import { useState, useCallback } from "react";
-import { Router , Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
 import ExternalProject from "./components/ExternalProject";
@@ -81,7 +81,7 @@ import Footer from "./components/Footer";
 import FloatingBar from "./components/FloatingBar";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Eoe from "./components/eoe";
-import Privacypolicy from "./components/privacypolicy";
+import Privacypolicy from "./components/privacypolicy.jsx";
 
 function Home({ onEnquire }) {
   return (
@@ -123,13 +123,13 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      {/* <Router> */}
-      <Routes>
-        <Route path="/" element={<Home onEnquire={openEnquiry} />} />
-        <Route path="/eoe" element={<Eoe/>} />
-        <Route path="/privacy-policy" element={<Privacypolicy />} />
-      </Routes>
-      {/* </Router> */}
+      <Router>
+  <Routes>
+    <Route path="/" element={<Home onEnquire={openEnquiry} />} />
+    <Route path="/eoe" element={<Eoe />} />
+    <Route path="/privacy-policy" element={<Privacypolicy />} />
+  </Routes>
+</Router>
       <Analytics />
 
       {modalConfig && (
