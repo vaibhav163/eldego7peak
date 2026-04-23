@@ -956,6 +956,7 @@ import Download from "../../eldeco-echoes/images/download.gif";
 import Loc from "../../eldeco-echoes/images/loc.jpg";
 import Side from "../../eldeco-echoes/images/side.jpg";
 import QR from "../../eldeco-echoes/images/qr.webp";
+import Privacy from "./Privactpolicy.jsx";
 
 
 /* ─── Inline styles ─── */
@@ -1529,6 +1530,7 @@ export default function EldecoEchoesOfEden() {
               { href: "#pricelist", label: "Price List"   },
               { href: "#gallery",   label: "Gallery"     },
               { href: "#location",  label: "Location"    },
+              // { href: "privacy-policy" label: "Privacy Policy" }
             ].map(({ href, label }) => (
               <li key={href}><a href={href} onClick={closeMenu}>{label}</a></li>
             ))}
@@ -1889,7 +1891,7 @@ The images displayed on the website are for representation purposes only and may
                     https://up-rera.in/projects/
                   </a>
                   <br />
-                  <a style={{ color: "#fff" }} href="privacy.php" target="_blank" rel="noreferrer">
+                  <a style={{ color: "#fff" }} href="privacy-policy" target="_blank" rel="noreferrer">
                     <b>Disclaimer &amp; Privacy Policy</b>
                   </a>
                 </p>
