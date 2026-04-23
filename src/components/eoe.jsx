@@ -1895,7 +1895,7 @@ The images displayed on the website are for representation purposes only and may
                   <br />
                   {/* <a style={{ color: "#fff" }} href="privacy-policy" target="_blank" rel="noreferrer"> */}
                     {/* <RouterLink to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
-                      <b>Disclaimer &amp; Privacy Policy</b>
+                      <b>Disclaimer & Privacy Policy</b>
                     </RouterLink> */}
                      {/* <Link to="/privacy-policy">Disclaimer & Privacy Policy</Link> */}
                      <a href="/privacy-policy">Privacy Policy</a>

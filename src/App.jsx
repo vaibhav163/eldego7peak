@@ -81,7 +81,7 @@ import Footer from "./components/Footer";
 import FloatingBar from "./components/FloatingBar";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Eoe from "./components/eoe";
-import Privactpolicy from "./components/Privactpolicy";
+import Privacypolicy from "./components/Privactpolicy";
 
 function Home({ onEnquire }) {
   return (
