@@ -127,7 +127,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home onEnquire={openEnquiry} />} />
         <Route path="/eoe" element={<Eoe/>} />
-        <Route path="/privacy-policy" element={<Privactpolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       {/* </Router> */}
       <Analytics />
