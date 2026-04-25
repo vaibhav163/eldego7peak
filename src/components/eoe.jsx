@@ -2115,11 +2115,10 @@ The images displayed on the website are for representation purposes only and may
 /* ─── App Component with Router ─────────────────────────────────────────────── */
 export default function App() {
   return (
-    <Router>
+    
       <Routes>
         <Route path="/" element={<EldecoEchoesOfEden />} />
         <Route path="/privacy-policy" element={<Privacy />} />
       </Routes>
-    </Router>
   );
 }

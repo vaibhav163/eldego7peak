@@ -130,10 +130,10 @@ export default function App() {
         <Route path="/privacy-policy" element={<Privacypolicy />} />
       </Routes> */}
       {/* </Router> */}
-    <Router>
-        <Route path="/" element={<Eoe onEnquire={openEnquiry} />} />
+    <Routes>
+        <Route path="*" element={<Eoe onEnquire={openEnquiry} />} />
         <Route path="/privacy-policy" element={<Privacypolicy />} />
-    </Router>
+    </Routes>
       <Analytics />
 
       {modalConfig && (
