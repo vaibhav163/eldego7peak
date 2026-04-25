@@ -124,12 +124,16 @@ export default function App() {
     <>
       <GlobalStyles />
       {/* <Router> */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home onEnquire={openEnquiry} />} />
         <Route path="/eoe" element={<Eoe/>} />
         <Route path="/privacy-policy" element={<Privacypolicy />} />
-      </Routes>
+      </Routes> */}
       {/* </Router> */}
+    <Router>
+        <Route path="/" element={<Eoe onEnquire={openEnquiry} />} />
+        <Route path="/privacy-policy" element={<Privacypolicy />} />
+    </Router>
       <Analytics />
 
       {modalConfig && (

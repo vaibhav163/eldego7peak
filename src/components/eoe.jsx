@@ -1,6 +1,34 @@
 // import { useState, useEffect, useRef } from "react";
+// import { Link } from 'react-router-dom';
+// import Ame1 from "../../eldeco-echoes/images/ame-01.jpg";
+// import Ame2 from "../../eldeco-echoes/images/ame-02.webp";
+// import Ame3 from "../../eldeco-echoes/images/ame-03.jpg";
+// import Ame4 from "../../eldeco-echoes/images/ame-04.webp";
+// import Ame5 from "../../eldeco-echoes/images/ame-05.jpg";
+// import Ame6 from "../../eldeco-echoes/images/ame-06.webp";  
+// import Ame7 from "../../eldeco-echoes/images/ame-07.jpg";
+// import Ame9 from "../../eldeco-echoes/images/ame-09.jpg";
+// import G1 from "../../eldeco-echoes/images/g1.jpg";
+// import G2 from "../../eldeco-echoes/images/g2.jpg";
+// import G3 from "../../eldeco-echoes/images/g3.jpg";
+// import G4 from "../../eldeco-echoes/images/g4.jpg";
+// import Ab from "../../eldeco-echoes/images/3-b.webp";
+// import Bb from "../../eldeco-echoes/images/4-b.webp";
+// import BannerMobile from "../../eldeco-echoes/images/mobile.jpeg";
+// import BannerDesktop from "../../eldeco-echoes/images/desktop.jpeg";
+// import AmenityBg from "../../eldeco-echoes/images/amen.jpeg";
+// import TaglineBg from "../../eldeco-echoes/images/bgg.jpeg";
+// import FormSide from "../../eldeco-echoes/images/side.jpg";
+// import Logo1 from "../../eldeco-echoes/images/eldeco.webp";
+// import Download from "../../eldeco-echoes/images/download.gif";
+// import Loc from "../../eldeco-echoes/images/loc.jpg";
+// import Side from "../../eldeco-echoes/images/side.jpg";
+// import QR from "../../eldeco-echoes/images/qr.webp";
+// import Privacy from "./privacypolicy.jsx";
+// import { Router } from "react-router-dom";
 
-// /* ─── Inline styles (converted from the original <style> block) ─── */
+
+// /* ─── Inline styles ─── */
 // const styles = `
 //   @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Marcellus&display=swap");
 //   @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css");
@@ -119,6 +147,12 @@
 //   .formContainer { background-color: #fff; color: var(--body-color); position: relative; z-index: 1; }
 //   .enquiry-form .inner { padding: 4rem; }
 
+//   /* Form status messages */
+//   .form-status { font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; }
+//   .form-status.sending { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+//   .form-status.success { background: #d1e7dd; color: #0a3622; border: 1px solid #02994a; }
+//   .form-status.error { background: #f8d7da; color: #842029; border: 1px solid #dc3545; }
+
 //   /* Utility */
 //   .padding { padding-top: 4rem; padding-bottom: 4rem; }
 //   .headingContainer { margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
@@ -212,76 +246,193 @@
 //   }
 // `;
 
-// /* ─── EmailJS helper ─── */
-// function sendEnquiry(formData, onSuccess, onError) {
-//   if (!window.emailjs) { onError("EmailJS not loaded"); return; }
-//   window.emailjs
-//     .send("service_fkmfynb", "template_bdjcyq6", formData)
-//     .then(onSuccess)
-//     .catch(onError);
+// /* ─── EmailJS Config ─────────────────────────────────────────────────────────
+//    Replace these values if your EmailJS credentials change.
+//    PUBLIC_KEY  → found in EmailJS dashboard → Account → API Keys
+//    SERVICE_ID  → EmailJS dashboard → Email Services
+//    TEMPLATE_ID → EmailJS dashboard → Email Templates
+// ────────────────────────────────────────────────────────────────────────────── */
+// const EMAILJS_PUBLIC_KEY  = "xLfYDZXLlR6IeQ-C6";
+// const EMAILJS_SERVICE_ID  = "service_fkmfynb";
+// const EMAILJS_TEMPLATE_ID = "template_bdjcyq6";
+
+// /* ─── Load EmailJS SDK once and return a stable Promise ─────────────────── */
+// let emailjsReady = null;
+
+// function loadEmailJS() {
+//   if (emailjsReady) return emailjsReady;
+
+//   emailjsReady = new Promise((resolve, reject) => {
+//     // Already loaded by a previous render
+//     if (window.emailjs) {
+//       window.emailjs.init(EMAILJS_PUBLIC_KEY);
+//       resolve(window.emailjs);
+//       return;
+//     }
+
+//     const script = document.createElement("script");
+//     script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+//     script.onload = () => {
+//       if (window.emailjs) {
+//         window.emailjs.init(EMAILJS_PUBLIC_KEY);
+//         resolve(window.emailjs);
+//       } else {
+//         reject(new Error("EmailJS failed to initialise"));
+//       }
+//     };
+//     script.onerror = () => reject(new Error("EmailJS script failed to load"));
+//     document.body.appendChild(script);
+//   });
+
+//   return emailjsReady;
 // }
 
-// /* ─── Reusable EnquiryForm ─── */
-// function EnquiryForm({ formId, statusClass, requireEmail = false }) {
-//   const [values, setValues] = useState({ name: "", mobile: "", email: "" });
-//   const [status, setStatus] = useState("");
+// /* ─── Core send function ─────────────────────────────────────────────────── */
+// async function sendEnquiry(templateParams) {
+//   const ejs = await loadEmailJS();
+//   return ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+// }
+
+// /* ─── Reusable EnquiryForm ───────────────────────────────────────────────── */
+// /*
+//   Props
+//   ─────
+//   formId       – unique HTML id for the <form> element
+//   requireEmail – show an optional / required email field (default false)
+//   source       – label string sent as part of the email so you know which
+//                  form triggered the submission (e.g. "Sidebar", "Modal")
+// */
+// function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
+//   const INITIAL = { name: "", mobile: "", email: "" };
+//   const [values,  setValues]  = useState(INITIAL);
+//   const [status,  setStatus]  = useState({ text: "", type: "" }); // type: sending | success | error
+//   const [loading, setLoading] = useState(false);
 
 //   const handleChange = (e) =>
-//     setValues({ ...values, [e.target.name]: e.target.value });
+//     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-//   const handleSubmit = (e) => {
+//   const handleSubmit = async (e) => {
 //     e.preventDefault();
-//     setStatus("Sending…");
-//     sendEnquiry(
-//       { name: values.name, mobile: values.mobile, email: values.email || "Not Provided" },
-//       () => {
-//         setStatus("✅ Enquiry sent successfully!");
-//         setValues({ name: "", mobile: "", email: "" });
+
+//     // Basic mobile validation
+//     if (!/^\d{10}$/.test(values.mobile.trim())) {
+//       setStatus({ text: "Please enter a valid 10-digit mobile number.", type: "error" });
+//       return;
+//     }
+
+//     setLoading(true);
+//     setStatus({ text: "Sending your enquiry…", type: "sending" });
+
+//     const templateParams = {
+//       from_name:   values.name.trim(),
+//       mobile:      values.mobile.trim(),
+//       email:       values.email.trim() || "Not provided",
+//       source_form: source,                  // tells you which form was used
+//       project:     "Eldeco Echoes of Eden",
+//       location:    "Sector 22D, Yamuna Expressway",
+//       reply_to:    values.email.trim() || "noreply@eldeco.com",
+//     };
+
+//     try {
+//       await sendEnquiry(templateParams);
+//       setStatus({ text: "✅ Enquiry sent successfully! We'll be in touch soon.", type: "success" });
+//       setValues(INITIAL);
+
+//       // Open WhatsApp after a short delay so the user sees the success message
+//       setTimeout(() => {
 //         window.open(
-//           "https://wa.me/919899911553?text=Hi, I just submitted an enquiry",
+//           `https://wa.me/919899911553?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20for%20Eldeco%20Echoes%20of%20Eden%20from%20the%20${encodeURIComponent(source)}%20form.`,
 //           "_blank"
 //         );
-//       },
-//       () => setStatus("❌ Failed to send enquiry")
-//     );
+//       }, 800);
+//     } catch (err) {
+//       console.error("EmailJS error:", err);
+//       setStatus({
+//         text: "❌ Failed to send enquiry. Please try again or call us directly.",
+//         type: "error",
+//       });
+//     } finally {
+//       setLoading(false);
+//     }
 //   };
 
 //   return (
-//     <form id={formId} className="form-container" onSubmit={handleSubmit}>
-//       {status && <p className={`${statusClass} text-danger mb-0 border-0`}>{status}</p>}
+//     <form id={formId} className="form-container" onSubmit={handleSubmit} noValidate>
+//       {/* Status message */}
+//       {status.text && (
+//         <p className={`form-status ${status.type}`}>{status.text}</p>
+//       )}
+
 //       <div className="row">
+//         {/* Name */}
 //         <div className="col-12 form-group">
 //           <div className="form-floating">
 //             <input
-//               type="text" className="form-control" name="name"
-//               placeholder="" required value={values.name} onChange={handleChange}
+//               type="text"
+//               id={`${formId}_name`}
+//               className="form-control"
+//               name="name"
+//               placeholder=" "
+//               required
+//               disabled={loading}
+//               value={values.name}
+//               onChange={handleChange}
 //             />
-//             <label>Name*</label>
+//             <label htmlFor={`${formId}_name`}>Name *</label>
 //           </div>
 //         </div>
+
+//         {/* Mobile */}
 //         <div className="col-12 form-group">
 //           <div className="form-floating">
 //             <input
-//               type="tel" className="form-control" name="mobile"
-//               placeholder="" required value={values.mobile} onChange={handleChange}
+//               type="tel"
+//               id={`${formId}_mobile`}
+//               className="form-control"
+//               name="mobile"
+//               placeholder=" "
+//               required
+//               maxLength={10}
+//               pattern="\d{10}"
+//               disabled={loading}
+//               value={values.mobile}
+//               onChange={handleChange}
 //             />
-//             <label>Mobile*</label>
+//             <label htmlFor={`${formId}_mobile`}>Mobile * (10 digits)</label>
 //           </div>
 //         </div>
+
+//         {/* Email – shown when requireEmail is true */}
 //         {requireEmail && (
 //           <div className="col-12 form-group">
 //             <div className="form-floating">
 //               <input
-//                 type="email" className="form-control" name="email"
-//                 placeholder="" required value={values.email} onChange={handleChange}
+//                 type="email"
+//                 id={`${formId}_email`}
+//                 className="form-control"
+//                 name="email"
+//                 placeholder=" "
+//                 required
+//                 disabled={loading}
+//                 value={values.email}
+//                 onChange={handleChange}
 //               />
-//               <label>Email*</label>
+//               <label htmlFor={`${formId}_email`}>Email *</label>
 //             </div>
 //           </div>
 //         )}
+
+//         {/* Submit */}
 //         <div className="col-12">
 //           <div className="readmore mt-3">
-//             <button type="submit" className="button w-100">Submit</button>
+//             <button
+//               type="submit"
+//               className="button w-100"
+//               disabled={loading}
+//               style={{ opacity: loading ? 0.7 : 1, cursor: loading ? "not-allowed" : "pointer" }}
+//             >
+//               {loading ? "Sending…" : "Submit Enquiry"}
+//             </button>
 //           </div>
 //         </div>
 //       </div>
@@ -289,11 +440,11 @@
 //   );
 // }
 
-// /* ─── Main Component ─── */
+// /* ─── Main Component ─────────────────────────────────────────────────────── */
 // export default function EldecoEchoesOfEden() {
-//   const [menuOpen, setMenuOpen] = useState(false);
-//   const [showModal, setShowModal] = useState(false);
-//   const [showScrollTop, setShowScrollTop] = useState(false);
+//   const [menuOpen,       setMenuOpen]       = useState(false);
+//   const [showModal,      setShowModal]      = useState(false);
+//   const [showScrollTop,  setShowScrollTop]  = useState(false);
 //   const swiperInitialized = useRef(false);
 
 //   /* Load external scripts */
@@ -301,23 +452,17 @@
 //     const loadScript = (src, onLoad) => {
 //       const existing = document.querySelector(`script[src="${src}"]`);
 //       if (existing) { if (onLoad) onLoad(); return; }
-//       const script = document.createElement("script");
-//       script.src = src;
-//       script.onload = onLoad;
-//       document.body.appendChild(script);
+//       const s = document.createElement("script");
+//       s.src = src;
+//       s.onload = onLoad;
+//       document.body.appendChild(s);
 //     };
-
-//     // EmailJS
-//     loadScript(
-//       "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js",
-//       () => window.emailjs && window.emailjs.init("xLfYDZXLlR6IeQ-C6")
-//     );
 
 //     // Bootstrap
 //     loadScript("https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js");
 //     loadScript("https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js");
 
-//     // Swiper → then init
+//     // Swiper → init
 //     loadScript(
 //       "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.1/swiper-bundle.min.js",
 //       () => {
@@ -331,7 +476,7 @@
 //             autoplay: { delay: 2500, disableOnInteraction: false },
 //             navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
 //             breakpoints: {
-//               540: { slidesPerView: 2, spaceBetween: 20 },
+//               540:  { slidesPerView: 2, spaceBetween: 20 },
 //               1200: { slidesPerView: 2, spaceBetween: 30 },
 //             },
 //           });
@@ -343,6 +488,9 @@
 //     loadScript("https://unpkg.com/aos@2.3.0/dist/aos.js", () => {
 //       if (window.AOS) window.AOS.init({ duration: 1200 });
 //     });
+
+//     // Pre-load EmailJS so it's ready before the first form submit
+//     loadEmailJS().catch((err) => console.warn("EmailJS pre-load failed:", err));
 //   }, []);
 
 //   /* Auto-open modal after 5 s */
@@ -351,39 +499,36 @@
 //     return () => clearTimeout(timer);
 //   }, []);
 
-//   /* Scroll-to-top button visibility */
+//   /* Scroll-to-top visibility */
 //   useEffect(() => {
 //     const onScroll = () => setShowScrollTop(window.scrollY > 100);
 //     window.addEventListener("scroll", onScroll);
 //     return () => window.removeEventListener("scroll", onScroll);
 //   }, []);
 
-//   /* Close menu on nav link click */
 //   const closeMenu = () => setMenuOpen(false);
-
 //   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
 //   const amenities = [
-//     { img: "eldeco-echoes/images/ame-01.jpg", label: "Jogging Track" },
-//     { img: "eldeco-echoes/images/ame-02.webp", label: "Yoga" },
-//     { img: "eldeco-echoes/images/ame-03.jpg", label: "The Sports Block" },
-//     { img: "eldeco-echoes/images/ame-04.webp", label: "Play Ground" },
-//     { img: "eldeco-echoes/images/ame-05.jpg", label: "Barbecue Area" },
-//     { img: "eldeco-echoes/images/ame-06.webp", label: "Kids Play Area" },
-//     { img: "eldeco-echoes/images/ame-07.jpg", label: "Swimming Pool" },
-//     { img: "eldeco-echoes/images/ame-09.jpg", label: "Gymnasium" },
+//     { img: Ame1,  label: "Jogging Track"   },
+//     { img: Ame2, label: "Yoga"            },
+//     { img: Ame3,  label: "The Sports Block" },
+//     { img: Ame4, label: "Play Ground"     },
+//     { img: Ame5,  label: "Barbecue Area"   },
+//     { img: Ame6, label: "Kids Play Area"  },
+//     { img: Ame7,  label: "Swimming Pool"   },
+//     { img: Ame9,  label: "Gymnasium"       },
 //   ];
 
 //   const galleryImages = [
-//     "eldeco-echoes/images/g1.jpg",
-//     "eldeco-echoes/images/g2.jpg",
-//     "eldeco-echoes/images/g3.jpg",
-//     "eldeco-echoes/images/g4.jpg",
+//     G1,
+//     G2,
+//     G3,
+//     G4,
 //   ];
 
 //   return (
 //     <>
-//       {/* Inject CSS */}
 //       <style>{styles}</style>
 
 //       <main>
@@ -391,22 +536,22 @@
 //         <div className="header fixed">
 //           <div className="container-fluid">
 //             <div className="logo">
-//               <img src=".\eldeco-echoes\images\eldeco.webp" alt="Eldeco" />
+//               <img src={Logo1} alt="Eldeco" />
 //             </div>
 
-//             {/* Desktop Nav */}
 //             <div className="menu-section">
 //               <nav className="navi d-none d-lg-flex align-items-center">
 //                 <ul className="list-inline menu d-flex justify-content-center align-items-center">
-//                   {["overview", "floorplan", "amenities", "gallery", "location"].map((s) => (
+//                   {["overview", "floorplan", "pricelist" , "amenities", "gallery", "location"].map((s) => (
 //                     <li key={s}>
-//                       <a href={`#${s}`}>{s.charAt(0).toUpperCase() + s.slice(1).replace("floorplan", "Floor Plans")}</a>
+//                       <a href={`#${s}`}>
+//                         {s === "floorplan" ? "Floor Plans" : s.charAt(0).toUpperCase() + s.slice(1)}
+//                       </a>
 //                     </li>
 //                   ))}
 //                 </ul>
 //               </nav>
 
-//               {/* Hamburger */}
 //               <button
 //                 className={`menuBtn d-flex d-lg-none ${menuOpen ? "closeMenuBtn" : ""}`}
 //                 onClick={() => setMenuOpen((o) => !o)}
@@ -417,20 +562,15 @@
 //               </button>
 //             </div>
 
-//             {/* CTA */}
 //             <div className="topHead cta-box d-none d-lg-block">
 //               <ul className="list-inline justify-content-end align-items-center">
 //                 <li>
 //                   <a
 //                     href="tel:9899911553"
 //                     style={{
-//                       backgroundColor: "var(--whatsapp)",
-//                       color: "#fff",
-//                       padding: "6px",
-//                       marginLeft: "1.5rem",
-//                       borderRadius: "40px",
-//                       flexDirection: "row",
-//                       width: "100px",
+//                       backgroundColor: "var(--whatsapp)", color: "#fff",
+//                       padding: "6px", marginLeft: "1.5rem", borderRadius: "40px",
+//                       flexDirection: "row", width: "100px",
 //                     }}
 //                   >
 //                     <i className="fa fa-phone" /> Call
@@ -438,10 +578,8 @@
 //                 </li>
 //                 <li>
 //                   <a
-//                     href="https://api.whatsapp.com/send?phone=+919355019172&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details."
-//                     target="_blank"
-//                     rel="noreferrer"
-//                     className="whatsappBtn"
+//                     href="https://api.whatsapp.com/send?phone=+919899911553&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details."
+//                     target="_blank" rel="noreferrer" className="whatsappBtn"
 //                   >
 //                     Get details on <i className="fab fa-whatsapp" />
 //                   </a>
@@ -455,15 +593,15 @@
 //         <div className={`menuContainer ${menuOpen ? "open" : ""}`}>
 //           <ul className="list-inline">
 //             {[
-//               { href: "#overview", label: "Overview" },
+//               { href: "#overview",  label: "Overview"    },
 //               { href: "#floorplan", label: "Floor Plans" },
-//               { href: "#amenities", label: "Amenities" },
-//               { href: "#gallery", label: "Gallery" },
-//               { href: "#location", label: "Location" },
+//               { href: "#amenities", label: "Amenities"   },
+//               { href: "#pricelist", label: "Price List"   },
+//               { href: "#gallery",   label: "Gallery"     },
+//               { href: "#location",  label: "Location"    },
+//               // { href: "privacy-policy" label: "Privacy Policy" }
 //             ].map(({ href, label }) => (
-//               <li key={href}>
-//                 <a href={href} onClick={closeMenu}>{label}</a>
-//               </li>
+//               <li key={href}><a href={href} onClick={closeMenu}>{label}</a></li>
 //             ))}
 //           </ul>
 //         </div>
@@ -472,30 +610,28 @@
 //         <div id="banner" className="banner">
 //           <div className="h-100">
 //             <picture>
-//               <source media="(max-width:560px)" srcSet="eldeco-echoes/images/mobile.jpeg" />
-//               <img src="eldeco-echoes/images/desktop.jpeg" className="h-100 object-cover" alt="Banner" />
+//               <source media="(max-width:560px)" srcSet={BannerMobile} />
+//               <img src={BannerDesktop} className="h-100 object-cover" alt="Banner" />
 //             </picture>
 //           </div>
-//           {/* <div className="bannerText">
-//             <p className="projectHead mb-1">Welcome to</p>
-//             <h1 className="bannerTitle">Eldeco Echoes of Eden</h1>
-//             <p className="mb-0">Sector 22D, Yamuna Expressway</p>
-//           </div> */}
 //         </div>
 
 //         {/* ── Overview ── */}
 //         <div className="w-100 padding bg-sec overviewWrapper" id="overview">
 //           <div className="container-lg">
 //             <div className="row g-4 flex-row-reverse">
-//               {/* Sidebar Form */}
+
+//               {/* ① Sidebar Form — source: "Sidebar" */}
 //               <div className="col-lg-4 fixed-form">
 //                 <div className="innerform">
 //                   <div className="form-strip">Express your Interest</div>
-//                   <EnquiryForm formId="enquiryForm" statusClass="fstatus" />
+//                   <EnquiryForm
+//                     formId="enquiryForm"
+//                     source="Sidebar"
+//                   />
 //                 </div>
 //               </div>
 
-//               {/* Overview Content */}
 //               <div className="col-lg-8 overviewContent">
 //                 <div className="inner pr-lg-4" data-aos="fade-right">
 //                   <div className="heading has-border">
@@ -527,10 +663,7 @@
 //                     <button className="button" onClick={() => setShowModal(true)}>
 //                       Download Brochure
 //                     </button>
-//                     <button
-//                       className="button d-none d-md-block"
-//                       onClick={() => setShowModal(true)}
-//                     >
+//                     <button className="button d-none d-md-block" onClick={() => setShowModal(true)}>
 //                       Schedule A Site Visit
 //                     </button>
 //                   </div>
@@ -544,7 +677,7 @@
 //         <div
 //           className="w-100 padding position-relative overflow-hidden amenitiesWrapper bg-image"
 //           id="amenities"
-//           style={{ backgroundImage: "url(./eldeco-echoes/images/amen.jpeg)", height: "auto" }}
+//           style={{ backgroundImage: `url(${AmenityBg})`, height: "auto" }}
 //         >
 //           <div className="container-lg">
 //             <div className="headingContainer" data-aos="fade-up">
@@ -558,9 +691,7 @@
 //                 {amenities.map(({ img, label }) => (
 //                   <div key={label} className="col-md-3 col-6 amenitiesitem">
 //                     <div className="inner">
-//                       <div className="icon">
-//                         <img src={img} alt={label} />
-//                       </div>
+//                       <div className="icon"><img src={img} alt={label} /></div>
 //                       <span>{label}</span>
 //                     </div>
 //                   </div>
@@ -588,13 +719,12 @@
 //             <div className="fpContainer" data-aos="fade-up">
 //               <div className="row g-4 justify-content-center">
 //                 {[
-//                   { type: "3 BHK", img: "./eldeco-echoes/images/3-b.webp", alt: "3bhk" },
-//                   { type: "4 BHK", img: "./eldeco-echoes/images/4-b.webp", alt: "4bhk" },
+//                   { type: "3 BHK", img: "https://image2url.com/r2/default/images/1775586904581-ab466bb8-ff75-4271-b4e6-014cda43391b.webp", alt: "3bhk" },
+//                   { type: "4 BHK", img: "https://image2url.com/r2/default/images/1775587018708-732efb18-f374-41d6-a387-5fd471436f4a.webp", alt: "4bhk" },
 //                 ].map(({ type, img, alt }) => (
 //                   <div key={type} className="col-lg-4 col-md-6 fpBox">
 //                     <div className="inner">
 //                       <button
-//                         className="button"
 //                         style={{ all: "unset", cursor: "pointer", display: "block" }}
 //                         onClick={() => setShowModal(true)}
 //                       >
@@ -627,7 +757,7 @@
 //         {/* ── Tagline ── */}
 //         <div
 //           className="w-100 padding position-relative overflow-hidden bg-image"
-//           style={{ backgroundImage: "url(./eldeco-echoes/images/bgg.jpeg)", height: "60vh" }}
+//           style={{ backgroundImage: `url(${TaglineBg})`, height: "60vh" }}
 //         >
 //           <div className="container-lg h-100 d-flex align-items-center justify-content-center">
 //             <div className="tagline" data-aos="fade-up">
@@ -661,10 +791,7 @@
 //                       <td>{t}</td>
 //                       <td>On Request</td>
 //                       <td className="readmore mt-0">
-//                         <button
-//                           className="button mx-auto"
-//                           onClick={() => setShowModal(true)}
-//                         >
+//                         <button className="button mx-auto" onClick={() => setShowModal(true)}>
 //                           Download Price List
 //                         </button>
 //                       </td>
@@ -696,9 +823,7 @@
 //               <div className="swiper-wrapper">
 //                 {galleryImages.map((src, i) => (
 //                   <div key={i} className="swiper-slide galBox">
-//                     <div className="inner">
-//                       <img src={src} alt="Gallery" />
-//                     </div>
+//                     <div className="inner"><img src={src} alt="Gallery" /></div>
 //                   </div>
 //                 ))}
 //               </div>
@@ -729,7 +854,7 @@
 //                   >
 //                     <img
 //                       style={{ filter: "blur(7px)" }}
-//                       src="./eldeco-echoes/images/loc.jpg"
+//                       src={Loc}
 //                       className="h-100 object-fit-cover locationmap"
 //                       alt="Location Map"
 //                     />
@@ -773,13 +898,9 @@
 //                     ].map(({ title, items }) => (
 //                       <div key={title} className="col-sm-6 locBox">
 //                         <div className="inner">
-//                           <h5 className="text-serif text-primary">
-//                             <b>{title}</b>
-//                           </h5>
+//                           <h5 className="text-serif text-primary"><b>{title}</b></h5>
 //                           <ul className="list-unstyled list">
-//                             {items.map((item) => (
-//                               <li key={item}>{item}</li>
-//                             ))}
+//                             {items.map((item) => <li key={item}>{item}</li>)}
 //                           </ul>
 //                         </div>
 //                       </div>
@@ -796,6 +917,8 @@
 //           <div className="container-lg">
 //             <div className="formContainer shadow-lg" data-aos="fade-up">
 //               <div className="row g-0">
+
+//                 {/* ② Bottom enquiry form — source: "Enquiry Section" */}
 //                 <div className="col-lg-7 enquiry-form">
 //                   <div className="inner">
 //                     <div className="heading">
@@ -804,11 +927,16 @@
 //                         To know more about the project, please fill the form
 //                       </h4>
 //                     </div>
-//                     <EnquiryForm formId="enquiryForm2" statusClass="statusc" requireEmail />
+//                     <EnquiryForm
+//                       formId="enquiryForm2"
+//                       requireEmail
+//                       source="Enquiry Section"
+//                     />
 //                   </div>
 //                 </div>
+
 //                 <div className="col-lg-5 form-img">
-//                   <img src="./eldeco-echoes/images/side.jpg" className="h-100 object-cover" alt="" />
+//                   <img src={FormSide} className="h-100 object-cover" alt="" />
 //                 </div>
 //               </div>
 //             </div>
@@ -823,26 +951,32 @@
 //                 <p style={{ color: "#fff" }}>
 //                   Project RERA No.: UPRERAPRJ125342/02/2026
 //                   <br />
-//                   Agent RERA No.: UPRERAAGT10202
+//                   {/* Agent RERA No.: UPRERAAGT10202 */}
 //                   <br />
+//                   <p>Disclaimer - Authorized marketing partner with Eldeco Builders. The content provided on this website is for information purposes only and does not constitute an offer to avail any service. The prices mentioned are subject to change without prior notice, and the availability of properties mentioned is not guaranteed.
+
+// The images displayed on the website are for representation purposes only and may not reflect the actual properties accurately. Please note that this is the official website of an authorized marketing partner. We may share data with Real Estate Regulatory Authority (RERA) registered brokers/companies for further processing as required. We may also send updates and information to the mobile number or email ID registered with us. All rights reserved. The content, design, and information on this website are protected by copyright and other intellectual property rights. Any unauthorized use or reproduction of the content may violate applicable laws. For accurate and up-to-date information regarding services, pricing, availability, and any other details, it is advisable to contact us directly through the provided contact information on this website. Thank you for visiting our website.</p>
 //                   <a href="https://up-rera.in/projects/" target="_blank" rel="noreferrer">
 //                     https://up-rera.in/projects/
 //                   </a>
 //                   <br />
-//                   <a style={{ color: "#fff" }} href="privacy.php" target="_blank" rel="noreferrer">
-//                     <b>Disclaimer &amp; Privacy Policy</b>
-//                   </a>
+//                   {/* <a style={{ color: "#fff" }} href="privacy-policy" target="_blank" rel="noreferrer"> */}
+//                     {/* <RouterLink to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
+//                       <b>Disclaimer & Privacy Policy</b>
+//                     </RouterLink> */}
+//                      {/* <Link to="/privacy-policy">Disclaimer & Privacy Policy</Link> */}
+//                      <a href="/privacy-policy">Privacy Policy</a>
+//                   {/* </a> */}
 //                 </p>
 //               </div>
 //               <div className="col-md-6">
 //                 <p style={{ color: "#fff" }}>
-//                   <img src="./eldeco-echoes/images/qr.webp" style={{ width: "100px" }} alt="QR Code" />
+//                   <img src={QR} style={{ width: "100px" }} alt="QR Code" />
 //                 </p>
 //               </div>
 //             </div>
 //           </div>
 
-//           {/* Scroll-to-top */}
 //           <div
 //             className={`button-top ${showScrollTop ? "visible" : ""}`}
 //             onClick={scrollTop}
@@ -856,22 +990,15 @@
 //           <a
 //             className="whatsCall"
 //             href="https://api.whatsapp.com/send?phone=+919355019172&text=Hi I am Interested in Eldeco Echoes of Eden, Please Share The Details."
-//             target="_blank"
-//             rel="noreferrer"
+//             target="_blank" rel="noreferrer"
 //           >
-//             <strong>
-//               <i className="fab fa-whatsapp" /> WhatsApp
-//             </strong>
+//             <strong><i className="fab fa-whatsapp" /> WhatsApp</strong>
 //           </a>
 //           <a href="tel:9899911553">
-//             <strong>
-//               <i className="fa fa-phone" /> Call
-//             </strong>
+//             <strong><i className="fa fa-phone" /> Call</strong>
 //           </a>
 //           <button style={{ all: "unset", cursor: "pointer" }} onClick={() => setShowModal(true)}>
-//             <strong>
-//               <i className="fa fa-envelope" /> Enquiry
-//             </strong>
+//             <strong><i className="fa fa-envelope" /> Enquiry</strong>
 //           </button>
 //         </div>
 
@@ -891,17 +1018,10 @@
 //                     className="close d-flex align-items-center justify-content-center"
 //                     onClick={() => setShowModal(false)}
 //                     style={{
-//                       position: "absolute",
-//                       top: -10,
-//                       right: -10,
-//                       width: 40,
-//                       height: 40,
-//                       zIndex: 1,
-//                       color: "maroon",
-//                       border: 0,
-//                       backgroundColor: "#fff",
-//                       fontSize: 35,
-//                       cursor: "pointer",
+//                       position: "absolute", top: -10, right: -10,
+//                       width: 40, height: 40, zIndex: 1,
+//                       color: "maroon", border: 0, backgroundColor: "#fff",
+//                       fontSize: 35, cursor: "pointer",
 //                     }}
 //                   >
 //                     ×
@@ -916,10 +1036,16 @@
 //                       </h5>
 //                     </div>
 //                   </div>
+
+//                   {/* ③ Modal form — source: "Modal Popup" */}
 //                   <div className="col-md-12">
 //                     <div className="modal-body">
 //                       <h5 className="mb-3 text-serif text-center">Express Your Interest</h5>
-//                       <EnquiryForm formId="enquiryForm3" statusClass="statusm" requireEmail />
+//                       <EnquiryForm
+//                         formId="enquiryForm3"
+//                         requireEmail
+//                         source="Modal Popup"
+//                       />
 //                     </div>
 //                   </div>
 //                 </div>
@@ -932,7 +1058,7 @@
 //   );
 // }
 import { useState, useEffect, useRef } from "react";
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Ame1 from "../../eldeco-echoes/images/ame-01.jpg";
 import Ame2 from "../../eldeco-echoes/images/ame-02.webp";
 import Ame3 from "../../eldeco-echoes/images/ame-03.jpg";
@@ -958,7 +1084,6 @@ import Loc from "../../eldeco-echoes/images/loc.jpg";
 import Side from "../../eldeco-echoes/images/side.jpg";
 import QR from "../../eldeco-echoes/images/qr.webp";
 import Privacy from "./privacypolicy.jsx";
-import { Router } from "react-router-dom";
 
 
 /* ─── Inline styles ─── */
@@ -1373,8 +1498,8 @@ function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
   );
 }
 
-/* ─── Main Component ─────────────────────────────────────────────────────── */
-export default function EldecoEchoesOfEden() {
+/* ─── Main Home Component ─────────────────────────────────────────────────────── */
+function EldecoEchoesOfEden() {
   const [menuOpen,       setMenuOpen]       = useState(false);
   const [showModal,      setShowModal]      = useState(false);
   const [showScrollTop,  setShowScrollTop]  = useState(false);
@@ -1469,7 +1594,9 @@ export default function EldecoEchoesOfEden() {
         <div className="header fixed">
           <div className="container-fluid">
             <div className="logo">
-              <img src={Logo1} alt="Eldeco" />
+              <Link to="/">
+                <img src={Logo1} alt="Eldeco" />
+              </Link>
             </div>
 
             <div className="menu-section">
@@ -1532,7 +1659,6 @@ export default function EldecoEchoesOfEden() {
               { href: "#pricelist", label: "Price List"   },
               { href: "#gallery",   label: "Gallery"     },
               { href: "#location",  label: "Location"    },
-              // { href: "privacy-policy" label: "Privacy Policy" }
             ].map(({ href, label }) => (
               <li key={href}><a href={href} onClick={closeMenu}>{label}</a></li>
             ))}
@@ -1703,7 +1829,7 @@ export default function EldecoEchoesOfEden() {
         </div>
 
         {/* ── Price List ── */}
-        <div className="w-100 padding position-relative overflow-hidden">
+        <div className="w-100 padding position-relative overflow-hidden" id="pricelist">
           <div className="container">
             <div className="heading">
               <h2 className="h1 text-primary text-uppercase mb-0">Price List</h2>
@@ -1884,7 +2010,6 @@ export default function EldecoEchoesOfEden() {
                 <p style={{ color: "#fff" }}>
                   Project RERA No.: UPRERAPRJ125342/02/2026
                   <br />
-                  {/* Agent RERA No.: UPRERAAGT10202 */}
                   <br />
                   <p>Disclaimer - Authorized marketing partner with Eldeco Builders. The content provided on this website is for information purposes only and does not constitute an offer to avail any service. The prices mentioned are subject to change without prior notice, and the availability of properties mentioned is not guaranteed.
 
@@ -1893,13 +2018,9 @@ The images displayed on the website are for representation purposes only and may
                     https://up-rera.in/projects/
                   </a>
                   <br />
-                  {/* <a style={{ color: "#fff" }} href="privacy-policy" target="_blank" rel="noreferrer"> */}
-                    {/* <RouterLink to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
-                      <b>Disclaimer & Privacy Policy</b>
-                    </RouterLink> */}
-                     {/* <Link to="/privacy-policy">Disclaimer & Privacy Policy</Link> */}
-                     <a href="/privacy-policy">Privacy Policy</a>
-                  {/* </a> */}
+                  <Link to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
+                    <b>Privacy Policy</b>
+                  </Link>
                 </p>
               </div>
               <div className="col-md-6">
@@ -1988,5 +2109,17 @@ The images displayed on the website are for representation purposes only and may
         )}
       </main>
     </>
+  );
+}
+
+/* ─── App Component with Router ─────────────────────────────────────────────── */
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<EldecoEchoesOfEden />} />
+        <Route path="/privacy-policy" element={<Privacy />} />
+      </Routes>
+    </Router>
   );
 }
