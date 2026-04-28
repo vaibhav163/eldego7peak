@@ -1412,10 +1412,30 @@ function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
     } finally {
       setLoading(false);
     }
+    
+  };
+  const handleReportConversion = (e) => {
+    // Prevent default behavior if it's a link or form submission
+    // e.preventDefault(); 
+
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-18122446172/VeIkCMGpqqMcENyqusFD',
+        'value': 50.0,
+        'currency': 'INR',
+        'event_callback': () => {
+          console.log('Conversion tracked successfully!');
+          // If you need to redirect the user after tracking:
+          // window.location.href = 'https://your-success-page.com';
+        }
+      });
+    } else {
+      console.warn("gtag is not defined. Check if your Google Tag script is loaded.");
+    }
   };
 
   return (
-    <form id={formId} className="form-container" onSubmit={handleSubmit} noValidate>
+    <form id={formId} className="form-container" onSubmit={handleSubmit} onClick={handleReportConversion} noValidate>
       {/* Status message */}
       {status.text && (
         <p className={`form-status ${status.type}`}>{status.text}</p>
