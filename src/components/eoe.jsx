@@ -1,5 +1,5 @@
 // import { useState, useEffect, useRef } from "react";
-// import { Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 // import Ame1 from "../../eldeco-echoes/images/ame-01.jpg";
 // import Ame2 from "../../eldeco-echoes/images/ame-02.webp";
 // import Ame3 from "../../eldeco-echoes/images/ame-03.jpg";
@@ -25,7 +25,6 @@
 // import Side from "../../eldeco-echoes/images/side.jpg";
 // import QR from "../../eldeco-echoes/images/qr.webp";
 // import Privacy from "./privacypolicy.jsx";
-// import { Router } from "react-router-dom";
 
 
 // /* ─── Inline styles ─── */
@@ -354,10 +353,30 @@
 //     } finally {
 //       setLoading(false);
 //     }
+    
+//   };
+//   const handleReportConversion = (e) => {
+//     // Prevent default behavior if it's a link or form submission
+//     // e.preventDefault(); 
+
+//     if (window.gtag) {
+//       window.gtag('event', 'conversion', {
+//         'send_to': 'AW-18122446172/VeIkCMGpqqMcENyqusFD',
+//         'value': 50.0,
+//         'currency': 'INR',
+//         'event_callback': () => {
+//           console.log('Conversion tracked successfully!');
+//           // If you need to redirect the user after tracking:
+//           // window.location.href = 'https://your-success-page.com';
+//         }
+//       });
+//     } else {
+//       console.warn("gtag is not defined. Check if your Google Tag script is loaded.");
+//     }
 //   };
 
 //   return (
-//     <form id={formId} className="form-container" onSubmit={handleSubmit} noValidate>
+//     <form id={formId} className="form-container" onSubmit={handleSubmit} onClick={handleReportConversion} noValidate>
 //       {/* Status message */}
 //       {status.text && (
 //         <p className={`form-status ${status.type}`}>{status.text}</p>
@@ -440,8 +459,8 @@
 //   );
 // }
 
-// /* ─── Main Component ─────────────────────────────────────────────────────── */
-// export default function EldecoEchoesOfEden() {
+// /* ─── Main Home Component ─────────────────────────────────────────────────────── */
+// function EldecoEchoesOfEden() {
 //   const [menuOpen,       setMenuOpen]       = useState(false);
 //   const [showModal,      setShowModal]      = useState(false);
 //   const [showScrollTop,  setShowScrollTop]  = useState(false);
@@ -536,7 +555,9 @@
 //         <div className="header fixed">
 //           <div className="container-fluid">
 //             <div className="logo">
-//               <img src={Logo1} alt="Eldeco" />
+//               <Link to="/">
+//                 <img src={Logo1} alt="Eldeco" />
+//               </Link>
 //             </div>
 
 //             <div className="menu-section">
@@ -599,7 +620,6 @@
 //               { href: "#pricelist", label: "Price List"   },
 //               { href: "#gallery",   label: "Gallery"     },
 //               { href: "#location",  label: "Location"    },
-//               // { href: "privacy-policy" label: "Privacy Policy" }
 //             ].map(({ href, label }) => (
 //               <li key={href}><a href={href} onClick={closeMenu}>{label}</a></li>
 //             ))}
@@ -770,7 +790,7 @@
 //         </div>
 
 //         {/* ── Price List ── */}
-//         <div className="w-100 padding position-relative overflow-hidden">
+//         <div className="w-100 padding position-relative overflow-hidden" id="pricelist">
 //           <div className="container">
 //             <div className="heading">
 //               <h2 className="h1 text-primary text-uppercase mb-0">Price List</h2>
@@ -951,7 +971,6 @@
 //                 <p style={{ color: "#fff" }}>
 //                   Project RERA No.: UPRERAPRJ125342/02/2026
 //                   <br />
-//                   {/* Agent RERA No.: UPRERAAGT10202 */}
 //                   <br />
 //                   <p>Disclaimer - Authorized marketing partner with Eldeco Builders. The content provided on this website is for information purposes only and does not constitute an offer to avail any service. The prices mentioned are subject to change without prior notice, and the availability of properties mentioned is not guaranteed.
 
@@ -960,13 +979,9 @@
 //                     https://up-rera.in/projects/
 //                   </a>
 //                   <br />
-//                   {/* <a style={{ color: "#fff" }} href="privacy-policy" target="_blank" rel="noreferrer"> */}
-//                     {/* <RouterLink to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
-//                       <b>Disclaimer & Privacy Policy</b>
-//                     </RouterLink> */}
-//                      {/* <Link to="/privacy-policy">Disclaimer & Privacy Policy</Link> */}
-//                      <a href="/privacy-policy">Privacy Policy</a>
-//                   {/* </a> */}
+//                   <Link to="/privacy-policy" style={{ color: "#fff", textDecoration: "underline" }}>
+//                     <b>Privacy Policy</b>
+//                   </Link>
 //                 </p>
 //               </div>
 //               <div className="col-md-6">
@@ -1057,6 +1072,17 @@
 //     </>
 //   );
 // }
+
+// /* ─── App Component with Router ─────────────────────────────────────────────── */
+// export default function App() {
+//   return (
+    
+//       <Routes>
+//         <Route path="/" element={<EldecoEchoesOfEden />} />
+//         <Route path="/privacy-policy" element={<Privacy />} />
+//       </Routes>
+//   );
+// }
 import { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Ame1 from "../../eldeco-echoes/images/ame-01.jpg";
@@ -1064,7 +1090,7 @@ import Ame2 from "../../eldeco-echoes/images/ame-02.webp";
 import Ame3 from "../../eldeco-echoes/images/ame-03.jpg";
 import Ame4 from "../../eldeco-echoes/images/ame-04.webp";
 import Ame5 from "../../eldeco-echoes/images/ame-05.jpg";
-import Ame6 from "../../eldeco-echoes/images/ame-06.webp";  
+import Ame6 from "../../eldeco-echoes/images/ame-06.webp";
 import Ame7 from "../../eldeco-echoes/images/ame-07.jpg";
 import Ame9 from "../../eldeco-echoes/images/ame-09.jpg";
 import G1 from "../../eldeco-echoes/images/g1.jpg";
@@ -1084,7 +1110,6 @@ import Loc from "../../eldeco-echoes/images/loc.jpg";
 import Side from "../../eldeco-echoes/images/side.jpg";
 import QR from "../../eldeco-echoes/images/qr.webp";
 import Privacy from "./privacypolicy.jsx";
-
 
 /* ─── Inline styles ─── */
 const styles = `
@@ -1266,6 +1291,9 @@ const styles = `
   /* Tagline */
   .tagline { max-width: 800px; color: #fff; text-align: center; line-height: 1.7; }
 
+  /* SEO text block */
+  .seo-text { font-size: 0.78rem; color: #999; line-height: 1.7; margin-top: 1.5rem; border-top: 1px dashed #ddd; padding-top: 1rem; }
+
   /* Responsive */
   @media (max-width: 991px) {
     body { text-align: center; }
@@ -1304,66 +1332,335 @@ const styles = `
   }
 `;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEO HOOK
+   Injects all meta tags, Open Graph, Twitter Card, geo tags, canonical URL,
+   and 5 JSON-LD structured data schemas into <head> on mount.
+   Update SITE_URL to your live domain before deploying.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const SITE_URL   = "https://www.eldecogrp.com";   // ← UPDATE to your live domain
+const SITE_IMAGE = `${SITE_URL}/eldeco-echoes/images/desktop.jpeg`;
+
+function useSEO() {
+  useEffect(() => {
+    /* ── Page title ── */
+    document.title =
+      "Eldeco Echoes of Eden | 3/4 BHK Luxury Apartments Sector 22D Yamuna Expressway | Near Jewar Airport";
+
+    /* ── Helpers ── */
+    const setMeta = (nameAttr, nameVal, contentVal) => {
+      let el = document.querySelector(`meta[${nameAttr}="${nameVal}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(nameAttr, nameVal);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", contentVal);
+    };
+
+    const setLink = (rel, href) => {
+      let el = document.querySelector(`link[rel="${rel}"]`);
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("rel", rel);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("href", href);
+    };
+
+    const setJsonLd = (id, data) => {
+      let el = document.getElementById(id);
+      if (!el) {
+        el = document.createElement("script");
+        el.id = id;
+        el.type = "application/ld+json";
+        document.head.appendChild(el);
+      }
+      el.textContent = JSON.stringify(data);
+    };
+
+    /* ════════════════════════════
+       CORE META TAGS
+    ════════════════════════════ */
+    setMeta("name", "description",
+      "Eldeco Echoes of Eden – Premium 3 BHK & 4 BHK luxury residences at Sector 22D, Yamuna Expressway, Greater Noida. Just 15 mins from Noida International Airport (Jewar Airport). RERA No. UPRERAPRJ125342/02/2026. Enquire for price list, floor plans & site visit."
+    );
+
+    setMeta("name", "keywords", [
+      /* ── Project exact-match ── */
+      "eldeco echoes of eden", "eldeco eoe", "eldeco echoes of eden sector 22d",
+      "eldeco eoe yamuna expressway", "eldeco echoes of eden price list",
+      "eldeco echoes of eden floor plan", "eldeco echoes of eden brochure",
+      "eldeco echoes of eden RERA", "eldeco echoes of eden greater noida",
+      /* ── Builder brand ── */
+      "eldeco group", "eldeco projects greater noida", "eldeco new launch 2025",
+      "eldeco new project yamuna expressway", "eldeco residential project",
+      "eldeco 3 bhk", "eldeco 4 bhk", "eldeco luxury apartments",
+      /* ── Yamuna Expressway ── */
+      "new project on yamuna expressway", "new launch yamuna expressway 2025",
+      "upcoming residential projects yamuna expressway",
+      "luxury apartments yamuna expressway", "3 bhk yamuna expressway",
+      "4 bhk yamuna expressway", "sector 22d yamuna expressway",
+      "sector 22d greater noida", "buy flat yamuna expressway",
+      "property yamuna expressway", "yamuna expressway real estate",
+      "YEIDA approved project", "yamuna authority residential project",
+      "yamuna expressway new launch 2025", "residential project yamuna expressway",
+      /* ── Jewar Airport ── */
+      "new project near jewar airport", "residential project near jewar airport",
+      "flat near jewar airport", "property near jewar airport",
+      "apartment near noida international airport",
+      "buy flat near jewar airport", "jewar airport real estate",
+      "housing near jewar airport", "noida international airport residential project",
+      "property investment near jewar airport", "jewar airport property",
+      "investment near noida international airport",
+      /* ── Greater Noida ── */
+      "greater noida luxury apartments", "greater noida new project 2025",
+      "luxury flats greater noida", "premium apartments greater noida",
+      "greater noida 3 bhk", "greater noida 4 bhk",
+      /* ── Generic high-intent ── */
+      "gated community yamuna expressway", "luxury residential project NCR",
+      "RERA registered project yamuna expressway",
+      "investment property near jewar airport NCR",
+      "new residential project greater noida",
+      "premium housing noida expressway",
+    ].join(", "));
+
+    setMeta("name", "robots",
+      "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    );
+    setMeta("name", "author", "Eldeco Group");
+
+    /* ════════════════════════════
+       GEO / LOCAL SEO
+    ════════════════════════════ */
+    setMeta("name", "geo.region", "IN-UP");
+    setMeta("name", "geo.placename",
+      "Sector 22D, Yamuna Expressway, Greater Noida, Uttar Pradesh, India"
+    );
+    setMeta("name", "geo.position", "28.3180;77.5452");
+    setMeta("name", "ICBM", "28.3180, 77.5452");
+
+    /* ════════════════════════════
+       OPEN GRAPH (Facebook / WhatsApp / LinkedIn previews)
+    ════════════════════════════ */
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:site_name", "Eldeco Echoes of Eden");
+    setMeta("property", "og:title",
+      "Eldeco Echoes of Eden | Luxury 3/4 BHK Near Jewar Airport | Sector 22D Yamuna Expressway"
+    );
+    setMeta("property", "og:description",
+      "Live amidst nature at Eldeco Echoes of Eden – premium 3 & 4 BHK residences at Sector 22D, Yamuna Expressway. Just 15 mins from Noida International Airport (Jewar). Limited units. Enquire now."
+    );
+    setMeta("property", "og:url", `${SITE_URL}/`);
+    setMeta("property", "og:image", SITE_IMAGE);
+    setMeta("property", "og:image:width", "1200");
+    setMeta("property", "og:image:height", "630");
+    setMeta("property", "og:image:alt",
+      "Eldeco Echoes of Eden – Luxury 3/4 BHK residences at Yamuna Expressway"
+    );
+    setMeta("property", "og:locale", "en_IN");
+
+    /* ════════════════════════════
+       TWITTER / X CARD
+    ════════════════════════════ */
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title",
+      "Eldeco Echoes of Eden | 3/4 BHK Near Jewar Airport | Yamuna Expressway"
+    );
+    setMeta("name", "twitter:description",
+      "Premium 3 & 4 BHK residences at Sector 22D, Yamuna Expressway — 15 mins from Noida International Airport. RERA registered. Enquire for price & floor plans."
+    );
+    setMeta("name", "twitter:image", SITE_IMAGE);
+    setMeta("name", "twitter:image:alt",
+      "Eldeco Echoes of Eden luxury apartments Yamuna Expressway"
+    );
+
+    /* ════════════════════════════
+       CANONICAL URL
+    ════════════════════════════ */
+    setLink("canonical", `${SITE_URL}/`);
+
+    /* ════════════════════════════
+       JSON-LD 1 — ApartmentComplex
+    ════════════════════════════ */
+    setJsonLd("jsonld-realestate", {
+      "@context": "https://schema.org",
+      "@type": "ApartmentComplex",
+      "name": "Eldeco Echoes of Eden",
+      "alternateName": ["Eldeco EOE", "Eldeco Echoes of Eden Sector 22D"],
+      "description":
+        "Premium 3 BHK and 4 BHK luxury residences by Eldeco Group at Sector 22D, Yamuna Expressway, Greater Noida. 15 minutes from Noida International Airport (Jewar Airport). RERA No. UPRERAPRJ125342/02/2026.",
+      "url": `${SITE_URL}/`,
+      "telephone": "+919899911553",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sector 22D",
+        "addressLocality": "Yamuna Expressway",
+        "addressRegion": "Greater Noida, Uttar Pradesh",
+        "postalCode": "201310",
+        "addressCountry": "IN",
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": "28.3180", "longitude": "77.5452" },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Swimming Pool",  "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Gymnasium",      "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Jogging Track",  "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Kids Play Area", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Yoga Area",      "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Barbecue Area",  "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Sports Block",   "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "24x7 Security",  "value": true },
+      ],
+      "containsPlace": [
+        { "@type": "Accommodation", "name": "3 BHK Luxury Residence", "numberOfRooms": 3 },
+        { "@type": "Accommodation", "name": "4 BHK Luxury Residence", "numberOfRooms": 4 },
+      ],
+    });
+
+    /* ── JSON-LD 2 — Organization ── */
+    setJsonLd("jsonld-org", {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Eldeco Group",
+      "url": `${SITE_URL}/`,
+      "logo": `${SITE_URL}/eldeco-echoes/images/eldeco.webp`,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9899911553",
+        "contactType": "sales",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"],
+      },
+    });
+
+    /* ── JSON-LD 3 — BreadcrumbList ── */
+    setJsonLd("jsonld-breadcrumb", {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",                    "item": `${SITE_URL}/` },
+        { "@type": "ListItem", "position": 2, "name": "Eldeco Echoes of Eden",   "item": `${SITE_URL}/` },
+      ],
+    });
+
+    /* ── JSON-LD 4 — FAQPage (rich results) ── */
+    setJsonLd("jsonld-faq", {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Eldeco Echoes of Eden?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Eldeco Echoes of Eden (Eldeco EOE) is a premium residential project by Eldeco Group offering 3 BHK and 4 BHK luxury apartments at Sector 22D, Yamuna Expressway, Greater Noida. RERA No. UPRERAPRJ125342/02/2026." },
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Eldeco Echoes of Eden located?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Eldeco Echoes of Eden is at Sector 22D, Yamuna Expressway, Greater Noida, Uttar Pradesh. It is approximately 15 minutes from Noida International Airport (Jewar Airport)." },
+        },
+        {
+          "@type": "Question",
+          "name": "How far is Eldeco Echoes of Eden from Jewar Airport?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Eldeco Echoes of Eden is approximately 15 minutes from Noida International Airport (Jewar Airport) via Yamuna Expressway." },
+        },
+        {
+          "@type": "Question",
+          "name": "What apartment types are available in Eldeco Echoes of Eden?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Eldeco Echoes of Eden offers 3 BHK and 4 BHK luxury residences. Contact us for current pricing and availability." },
+        },
+        {
+          "@type": "Question",
+          "name": "What is the RERA number for Eldeco Echoes of Eden?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The RERA number is UPRERAPRJ125342/02/2026, registered with the Uttar Pradesh Real Estate Regulatory Authority." },
+        },
+        {
+          "@type": "Question",
+          "name": "What amenities does Eldeco Echoes of Eden offer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Amenities include a swimming pool, gymnasium, jogging track, yoga area, kids play area, barbecue zone, sports block, and 24x7 security." },
+        },
+        {
+          "@type": "Question",
+          "name": "Is Eldeco Echoes of Eden a good investment near Jewar Airport?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Located at Sector 22D on the Yamuna Expressway, Eldeco Echoes of Eden benefits from proximity to Noida International Airport (Jewar), Eastern Peripheral Expressway, and major universities — all key drivers for property appreciation in the region." },
+        },
+        {
+          "@type": "Question",
+          "name": "How do I book a site visit for Eldeco Echoes of Eden?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Fill the enquiry form on this page, call +91-9899911553, or WhatsApp us for instant assistance." },
+        },
+      ],
+    });
+
+    /* ── JSON-LD 5 — LocalBusiness / RealEstateAgent ── */
+    setJsonLd("jsonld-localbusiness", {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Eldeco Echoes of Eden – Authorised Marketing Partner",
+      "image": SITE_IMAGE,
+      "telephone": "+919899911553",
+      "url": `${SITE_URL}/`,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sector 22D",
+        "addressLocality": "Yamuna Expressway, Greater Noida",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "201310",
+        "addressCountry": "IN",
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": "28.3180", "longitude": "77.5452" },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "09:00",
+        "closes": "20:00",
+      },
+      "priceRange": "₹₹₹",
+    });
+
+    /* ── Cleanup on unmount ── */
+    return () => {
+      document.title = "Eldeco";
+      ["jsonld-realestate","jsonld-org","jsonld-breadcrumb","jsonld-faq","jsonld-localbusiness"]
+        .forEach((id) => { const el = document.getElementById(id); if (el) el.remove(); });
+    };
+  }, []);
+}
+
 /* ─── EmailJS Config ─────────────────────────────────────────────────────────
    Replace these values if your EmailJS credentials change.
-   PUBLIC_KEY  → found in EmailJS dashboard → Account → API Keys
-   SERVICE_ID  → EmailJS dashboard → Email Services
-   TEMPLATE_ID → EmailJS dashboard → Email Templates
 ────────────────────────────────────────────────────────────────────────────── */
 const EMAILJS_PUBLIC_KEY  = "xLfYDZXLlR6IeQ-C6";
 const EMAILJS_SERVICE_ID  = "service_fkmfynb";
 const EMAILJS_TEMPLATE_ID = "template_bdjcyq6";
 
-/* ─── Load EmailJS SDK once and return a stable Promise ─────────────────── */
 let emailjsReady = null;
 
 function loadEmailJS() {
   if (emailjsReady) return emailjsReady;
-
   emailjsReady = new Promise((resolve, reject) => {
-    // Already loaded by a previous render
-    if (window.emailjs) {
-      window.emailjs.init(EMAILJS_PUBLIC_KEY);
-      resolve(window.emailjs);
-      return;
-    }
-
+    if (window.emailjs) { window.emailjs.init(EMAILJS_PUBLIC_KEY); resolve(window.emailjs); return; }
     const script = document.createElement("script");
     script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
     script.onload = () => {
-      if (window.emailjs) {
-        window.emailjs.init(EMAILJS_PUBLIC_KEY);
-        resolve(window.emailjs);
-      } else {
-        reject(new Error("EmailJS failed to initialise"));
-      }
+      if (window.emailjs) { window.emailjs.init(EMAILJS_PUBLIC_KEY); resolve(window.emailjs); }
+      else reject(new Error("EmailJS failed to initialise"));
     };
     script.onerror = () => reject(new Error("EmailJS script failed to load"));
     document.body.appendChild(script);
   });
-
   return emailjsReady;
 }
 
-/* ─── Core send function ─────────────────────────────────────────────────── */
 async function sendEnquiry(templateParams) {
   const ejs = await loadEmailJS();
   return ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
 }
 
 /* ─── Reusable EnquiryForm ───────────────────────────────────────────────── */
-/*
-  Props
-  ─────
-  formId       – unique HTML id for the <form> element
-  requireEmail – show an optional / required email field (default false)
-  source       – label string sent as part of the email so you know which
-                 form triggered the submission (e.g. "Sidebar", "Modal")
-*/
 function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
   const INITIAL = { name: "", mobile: "", email: "" };
   const [values,  setValues]  = useState(INITIAL);
-  const [status,  setStatus]  = useState({ text: "", type: "" }); // type: sending | success | error
+  const [status,  setStatus]  = useState({ text: "", type: "" });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) =>
@@ -1371,32 +1668,25 @@ function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Basic mobile validation
     if (!/^\d{10}$/.test(values.mobile.trim())) {
       setStatus({ text: "Please enter a valid 10-digit mobile number.", type: "error" });
       return;
     }
-
     setLoading(true);
     setStatus({ text: "Sending your enquiry…", type: "sending" });
-
     const templateParams = {
       from_name:   values.name.trim(),
       mobile:      values.mobile.trim(),
       email:       values.email.trim() || "Not provided",
-      source_form: source,                  // tells you which form was used
+      source_form: source,
       project:     "Eldeco Echoes of Eden",
       location:    "Sector 22D, Yamuna Expressway",
       reply_to:    values.email.trim() || "noreply@eldeco.com",
     };
-
     try {
       await sendEnquiry(templateParams);
       setStatus({ text: "✅ Enquiry sent successfully! We'll be in touch soon.", type: "success" });
       setValues(INITIAL);
-
-      // Open WhatsApp after a short delay so the user sees the success message
       setTimeout(() => {
         window.open(
           `https://wa.me/919899911553?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20for%20Eldeco%20Echoes%20of%20Eden%20from%20the%20${encodeURIComponent(source)}%20form.`,
@@ -1405,110 +1695,49 @@ function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
       }, 800);
     } catch (err) {
       console.error("EmailJS error:", err);
-      setStatus({
-        text: "❌ Failed to send enquiry. Please try again or call us directly.",
-        type: "error",
-      });
+      setStatus({ text: "❌ Failed to send enquiry. Please try again or call us directly.", type: "error" });
     } finally {
       setLoading(false);
     }
-    
   };
-  const handleReportConversion = (e) => {
-    // Prevent default behavior if it's a link or form submission
-    // e.preventDefault(); 
 
+  const handleReportConversion = () => {
     if (window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-18122446172/VeIkCMGpqqMcENyqusFD',
-        'value': 50.0,
-        'currency': 'INR',
-        'event_callback': () => {
-          console.log('Conversion tracked successfully!');
-          // If you need to redirect the user after tracking:
-          // window.location.href = 'https://your-success-page.com';
-        }
+      window.gtag("event", "conversion", {
+        send_to: "AW-18122446172/VeIkCMGpqqMcENyqusFD",
+        value: 50.0,
+        currency: "INR",
       });
-    } else {
-      console.warn("gtag is not defined. Check if your Google Tag script is loaded.");
     }
   };
 
   return (
     <form id={formId} className="form-container" onSubmit={handleSubmit} onClick={handleReportConversion} noValidate>
-      {/* Status message */}
-      {status.text && (
-        <p className={`form-status ${status.type}`}>{status.text}</p>
-      )}
-
+      {status.text && <p className={`form-status ${status.type}`}>{status.text}</p>}
       <div className="row">
-        {/* Name */}
         <div className="col-12 form-group">
           <div className="form-floating">
-            <input
-              type="text"
-              id={`${formId}_name`}
-              className="form-control"
-              name="name"
-              placeholder=" "
-              required
-              disabled={loading}
-              value={values.name}
-              onChange={handleChange}
-            />
+            <input type="text" id={`${formId}_name`} className="form-control" name="name" placeholder=" " required disabled={loading} value={values.name} onChange={handleChange} />
             <label htmlFor={`${formId}_name`}>Name *</label>
           </div>
         </div>
-
-        {/* Mobile */}
         <div className="col-12 form-group">
           <div className="form-floating">
-            <input
-              type="tel"
-              id={`${formId}_mobile`}
-              className="form-control"
-              name="mobile"
-              placeholder=" "
-              required
-              maxLength={10}
-              pattern="\d{10}"
-              disabled={loading}
-              value={values.mobile}
-              onChange={handleChange}
-            />
+            <input type="tel" id={`${formId}_mobile`} className="form-control" name="mobile" placeholder=" " required maxLength={10} pattern="\d{10}" disabled={loading} value={values.mobile} onChange={handleChange} />
             <label htmlFor={`${formId}_mobile`}>Mobile * (10 digits)</label>
           </div>
         </div>
-
-        {/* Email – shown when requireEmail is true */}
         {requireEmail && (
           <div className="col-12 form-group">
             <div className="form-floating">
-              <input
-                type="email"
-                id={`${formId}_email`}
-                className="form-control"
-                name="email"
-                placeholder=" "
-                required
-                disabled={loading}
-                value={values.email}
-                onChange={handleChange}
-              />
+              <input type="email" id={`${formId}_email`} className="form-control" name="email" placeholder=" " required disabled={loading} value={values.email} onChange={handleChange} />
               <label htmlFor={`${formId}_email`}>Email *</label>
             </div>
           </div>
         )}
-
-        {/* Submit */}
         <div className="col-12">
           <div className="readmore mt-3">
-            <button
-              type="submit"
-              className="button w-100"
-              disabled={loading}
-              style={{ opacity: loading ? 0.7 : 1, cursor: loading ? "not-allowed" : "pointer" }}
-            >
+            <button type="submit" className="button w-100" disabled={loading} style={{ opacity: loading ? 0.7 : 1, cursor: loading ? "not-allowed" : "pointer" }}>
               {loading ? "Sending…" : "Submit Enquiry"}
             </button>
           </div>
@@ -1518,66 +1747,48 @@ function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
   );
 }
 
-/* ─── Main Home Component ─────────────────────────────────────────────────────── */
+/* ─── Main Home Component ─────────────────────────────────────────────────── */
 function EldecoEchoesOfEden() {
+  /* ✅ SEO hook — injects all meta / structured data */
+  useSEO();
+
   const [menuOpen,       setMenuOpen]       = useState(false);
   const [showModal,      setShowModal]      = useState(false);
   const [showScrollTop,  setShowScrollTop]  = useState(false);
   const swiperInitialized = useRef(false);
 
-  /* Load external scripts */
   useEffect(() => {
     const loadScript = (src, onLoad) => {
       const existing = document.querySelector(`script[src="${src}"]`);
       if (existing) { if (onLoad) onLoad(); return; }
       const s = document.createElement("script");
-      s.src = src;
-      s.onload = onLoad;
+      s.src = src; s.onload = onLoad;
       document.body.appendChild(s);
     };
-
-    // Bootstrap
     loadScript("https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js");
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js");
-
-    // Swiper → init
-    loadScript(
-      "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.1/swiper-bundle.min.js",
-      () => {
-        if (!swiperInitialized.current && window.Swiper) {
-          swiperInitialized.current = true;
-          new window.Swiper(".gallerySlider", {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            speed: 800,
-            loop: true,
-            autoplay: { delay: 2500, disableOnInteraction: false },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            breakpoints: {
-              540:  { slidesPerView: 2, spaceBetween: 20 },
-              1200: { slidesPerView: 2, spaceBetween: 30 },
-            },
-          });
-        }
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.1/swiper-bundle.min.js", () => {
+      if (!swiperInitialized.current && window.Swiper) {
+        swiperInitialized.current = true;
+        new window.Swiper(".gallerySlider", {
+          slidesPerView: 1, spaceBetween: 10, speed: 800, loop: true,
+          autoplay: { delay: 2500, disableOnInteraction: false },
+          navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+          breakpoints: { 540: { slidesPerView: 2, spaceBetween: 20 }, 1200: { slidesPerView: 2, spaceBetween: 30 } },
+        });
       }
-    );
-
-    // AOS
+    });
     loadScript("https://unpkg.com/aos@2.3.0/dist/aos.js", () => {
       if (window.AOS) window.AOS.init({ duration: 1200 });
     });
-
-    // Pre-load EmailJS so it's ready before the first form submit
     loadEmailJS().catch((err) => console.warn("EmailJS pre-load failed:", err));
   }, []);
 
-  /* Auto-open modal after 5 s */
   useEffect(() => {
     const timer = setTimeout(() => setShowModal(true), 5000);
     return () => clearTimeout(timer);
   }, []);
 
-  /* Scroll-to-top visibility */
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 100);
     window.addEventListener("scroll", onScroll);
@@ -1588,22 +1799,17 @@ function EldecoEchoesOfEden() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const amenities = [
-    { img: Ame1,  label: "Jogging Track"   },
+    { img: Ame1, label: "Jogging Track"   },
     { img: Ame2, label: "Yoga"            },
-    { img: Ame3,  label: "The Sports Block" },
+    { img: Ame3, label: "The Sports Block" },
     { img: Ame4, label: "Play Ground"     },
-    { img: Ame5,  label: "Barbecue Area"   },
+    { img: Ame5, label: "Barbecue Area"   },
     { img: Ame6, label: "Kids Play Area"  },
-    { img: Ame7,  label: "Swimming Pool"   },
-    { img: Ame9,  label: "Gymnasium"       },
+    { img: Ame7, label: "Swimming Pool"   },
+    { img: Ame9, label: "Gymnasium"       },
   ];
 
-  const galleryImages = [
-    G1,
-    G2,
-    G3,
-    G4,
-  ];
+  const galleryImages = [G1, G2, G3, G4];
 
   return (
     <>
@@ -1615,14 +1821,13 @@ function EldecoEchoesOfEden() {
           <div className="container-fluid">
             <div className="logo">
               <Link to="/">
-                <img src={Logo1} alt="Eldeco" />
+                <img src={Logo1} alt="Eldeco Group – Eldeco Echoes of Eden" />
               </Link>
             </div>
-
             <div className="menu-section">
-              <nav className="navi d-none d-lg-flex align-items-center">
+              <nav className="navi d-none d-lg-flex align-items-center" aria-label="Main navigation">
                 <ul className="list-inline menu d-flex justify-content-center align-items-center">
-                  {["overview", "floorplan", "pricelist" , "amenities", "gallery", "location"].map((s) => (
+                  {["overview", "floorplan", "pricelist", "amenities", "gallery", "location"].map((s) => (
                     <li key={s}>
                       <a href={`#${s}`}>
                         {s === "floorplan" ? "Floor Plans" : s.charAt(0).toUpperCase() + s.slice(1)}
@@ -1631,36 +1836,25 @@ function EldecoEchoesOfEden() {
                   ))}
                 </ul>
               </nav>
-
               <button
                 className={`menuBtn d-flex d-lg-none ${menuOpen ? "closeMenuBtn" : ""}`}
                 onClick={() => setMenuOpen((o) => !o)}
+                aria-label="Toggle navigation menu"
               >
                 <span id="menuLine1" />
                 <span id="menuLine2" />
                 <span id="menuLine3" />
               </button>
             </div>
-
             <div className="topHead cta-box d-none d-lg-block">
               <ul className="list-inline justify-content-end align-items-center">
                 <li>
-                  <a
-                    href="tel:9899911553"
-                    style={{
-                      backgroundColor: "var(--whatsapp)", color: "#fff",
-                      padding: "6px", marginLeft: "1.5rem", borderRadius: "40px",
-                      flexDirection: "row", width: "100px",
-                    }}
-                  >
+                  <a href="tel:9899911553" aria-label="Call us" style={{ backgroundColor: "var(--whatsapp)", color: "#fff", padding: "6px", marginLeft: "1.5rem", borderRadius: "40px", flexDirection: "row", width: "100px" }}>
                     <i className="fa fa-phone" /> Call
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://api.whatsapp.com/send?phone=+919899911553&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details."
-                    target="_blank" rel="noreferrer" className="whatsappBtn"
-                  >
+                  <a href="https://api.whatsapp.com/send?phone=+919899911553&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details." target="_blank" rel="noreferrer" className="whatsappBtn" aria-label="WhatsApp us">
                     Get details on <i className="fab fa-whatsapp" />
                   </a>
                 </li>
@@ -1670,13 +1864,13 @@ function EldecoEchoesOfEden() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`menuContainer ${menuOpen ? "open" : ""}`}>
+        <div className={`menuContainer ${menuOpen ? "open" : ""}`} role="navigation" aria-label="Mobile navigation">
           <ul className="list-inline">
             {[
               { href: "#overview",  label: "Overview"    },
               { href: "#floorplan", label: "Floor Plans" },
               { href: "#amenities", label: "Amenities"   },
-              { href: "#pricelist", label: "Price List"   },
+              { href: "#pricelist", label: "Price List"  },
               { href: "#gallery",   label: "Gallery"     },
               { href: "#location",  label: "Location"    },
             ].map(({ href, label }) => (
@@ -1686,58 +1880,85 @@ function EldecoEchoesOfEden() {
         </div>
 
         {/* ── Banner ── */}
-        <div id="banner" className="banner">
+        <div id="banner" className="banner" role="banner">
           <div className="h-100">
             <picture>
               <source media="(max-width:560px)" srcSet={BannerMobile} />
-              <img src={BannerDesktop} className="h-100 object-cover" alt="Banner" />
+              <img
+                src={BannerDesktop}
+                className="h-100 object-cover"
+                alt="Eldeco Echoes of Eden – Luxury 3/4 BHK Residences at Sector 22D Yamuna Expressway, Greater Noida"
+                loading="eager"
+              />
             </picture>
           </div>
         </div>
 
         {/* ── Overview ── */}
-        <div className="w-100 padding bg-sec overviewWrapper" id="overview">
+        <section className="w-100 padding bg-sec overviewWrapper" id="overview" aria-label="Project Overview">
           <div className="container-lg">
             <div className="row g-4 flex-row-reverse">
 
-              {/* ① Sidebar Form — source: "Sidebar" */}
               <div className="col-lg-4 fixed-form">
                 <div className="innerform">
                   <div className="form-strip">Express your Interest</div>
-                  <EnquiryForm
-                    formId="enquiryForm"
-                    source="Sidebar"
-                  />
+                  <EnquiryForm formId="enquiryForm" source="Sidebar" />
                 </div>
               </div>
 
               <div className="col-lg-8 overviewContent">
                 <div className="inner pr-lg-4" data-aos="fade-right">
                   <div className="heading has-border">
-                    <h2 className="h1 text-primary">Eldeco Echoes of Eden</h2>
-                    <h4 className="h4 mb-0">At Sector 22D Yamuna Expressway</h4>
+                    {/* h1 — the most important on-page SEO signal */}
+                    <h1 className="h1 text-primary">Eldeco Echoes of Eden</h1>
+                    <h2 className="h4 mb-0">
+                      3 &amp; 4 BHK Luxury Residences at Sector 22D, Yamuna Expressway, Greater Noida
+                    </h2>
                   </div>
                   <p>
-                    Eldeco Echoes of Eden unveils 3BHK and 4BHK residences at Yamuna Expressway,
-                    Greater Noida. At Sector 22D, thoughtfully designed amidst lush green
-                    surroundings, this premium residential development offers an elevated lifestyle
-                    for families who seek comfort, elegance, and future-ready living.
+                    <strong>Eldeco Echoes of Eden</strong> (Eldeco EOE) unveils premium 3 BHK and 4 BHK
+                    residences on the <strong>Yamuna Expressway, Greater Noida</strong>. Thoughtfully
+                    designed amidst lush green surroundings at <strong>Sector 22D</strong>, this
+                    RERA-registered luxury development offers an elevated lifestyle for families who
+                    seek comfort, elegance, and future-ready living near the upcoming{" "}
+                    <strong>Noida International Airport (Jewar Airport)</strong>.
                   </p>
                   <p>
-                    Strategically located in Sector 22D, Yamuna Expressway, the project blends
-                    urban connectivity with peaceful surroundings, making it an ideal destination
-                    for both end-users and investors.
+                    Strategically positioned on the <strong>Yamuna Expressway</strong>, the project
+                    blends urban connectivity with peaceful surroundings — just 15 minutes from
+                    Jewar Airport and 20 minutes from the Eastern Peripheral Expressway — making it
+                    an ideal destination for both end-users and investors seeking high ROI in NCR.
                   </p>
+
                   <div className="configuration">
                     <div className="configuration-box">
-                      <h6 className="text-primary text-serif">Type</h6>
-                      <p className="mb-0">3/4 BHK Luxury Residences</p>
+                      <h3 className="text-primary text-serif" style={{ fontSize: "1rem" }}>Type</h3>
+                      <p className="mb-0">3 &amp; 4 BHK Luxury Residences</p>
                     </div>
                     <div className="configuration-box">
-                      <h6 className="text-primary text-serif">LOCATION</h6>
-                      <p className="mb-0">Sector 22D Yamuna Expressway</p>
+                      <h3 className="text-primary text-serif" style={{ fontSize: "1rem" }}>Location</h3>
+                      <p className="mb-0">Sector 22D, Yamuna Expressway, Greater Noida</p>
+                    </div>
+                    <div className="configuration-box">
+                      <h3 className="text-primary text-serif" style={{ fontSize: "1rem" }}>Jewar Airport</h3>
+                      <p className="mb-0">~15 mins away</p>
                     </div>
                   </div>
+
+                  {/* ── SEO paragraph – visible to crawlers and users ── */}
+                  <p className="seo-text">
+                    <strong>Eldeco Echoes of Eden</strong> is a RERA-registered project by{" "}
+                    <strong>Eldeco Group</strong> (RERA No. UPRERAPRJ125342/02/2026). Located at{" "}
+                    <strong>Sector 22D, Yamuna Expressway</strong>, the project is one of the most
+                    anticipated new launches near <strong>Jewar Airport</strong> (Noida International
+                    Airport). Whether you're searching for a{" "}
+                    <em>3 BHK flat on Yamuna Expressway</em>,{" "}
+                    <em>property near Jewar Airport</em>, or a{" "}
+                    <em>new residential project by Eldeco</em> in Greater Noida — Eldeco EOE delivers
+                    luxury, connectivity, and long-term investment value on the{" "}
+                    <strong>Yamuna Expressway real estate</strong> corridor.
+                  </p>
+
                   <div className="readmore d-flex">
                     <button className="button" onClick={() => setShowModal(true)}>
                       Download Brochure
@@ -1750,19 +1971,20 @@ function EldecoEchoesOfEden() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* ── Amenities ── */}
-        <div
+        <section
           className="w-100 padding position-relative overflow-hidden amenitiesWrapper bg-image"
           id="amenities"
+          aria-label="Amenities"
           style={{ backgroundImage: `url(${AmenityBg})`, height: "auto" }}
         >
           <div className="container-lg">
             <div className="headingContainer" data-aos="fade-up">
               <div className="heading mb-0 text-white mx-auto text-center">
-                <h2 className="h1 mb-0">Amenities</h2>
-                <h4 className="h4 mb-0">A bouquet of amenities for every lifestyle</h4>
+                <h2 className="h1 mb-0">World-Class Amenities</h2>
+                <p className="h4 mb-0">A bouquet of amenities for every lifestyle at Eldeco Echoes of Eden</p>
               </div>
             </div>
             <div className="amenitiesContainer" data-aos="fade-up">
@@ -1770,7 +1992,9 @@ function EldecoEchoesOfEden() {
                 {amenities.map(({ img, label }) => (
                   <div key={label} className="col-md-3 col-6 amenitiesitem">
                     <div className="inner">
-                      <div className="icon"><img src={img} alt={label} /></div>
+                      <div className="icon">
+                        <img src={img} alt={`${label} – Eldeco Echoes of Eden amenity`} loading="lazy" />
+                      </div>
                       <span>{label}</span>
                     </div>
                   </div>
@@ -1778,15 +2002,15 @@ function EldecoEchoesOfEden() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* ── Floor Plans ── */}
-        <div className="w-100 padding fpWrapper" id="floorplan">
+        <section className="w-100 padding fpWrapper" id="floorplan" aria-label="Floor Plans">
           <div className="container-lg">
             <div className="headingContainer" data-aos="fade-up">
               <div className="heading mb-0">
                 <h2 className="h1 text-primary mb-0">Floor Plans</h2>
-                <h4 className="h4 mb-0">Eldeco Echoes of Eden</h4>
+                <p className="h4 mb-0">3 BHK &amp; 4 BHK Luxury Floor Plans – Eldeco Echoes of Eden, Sector 22D</p>
               </div>
               <div className="viewmore w-auto d-none d-md-block">
                 <button className="button" onClick={() => setShowModal(true)}>
@@ -1794,33 +2018,29 @@ function EldecoEchoesOfEden() {
                 </button>
               </div>
             </div>
-
             <div className="fpContainer" data-aos="fade-up">
               <div className="row g-4 justify-content-center">
                 {[
-                  { type: "3 BHK", img: "https://image2url.com/r2/default/images/1775586904581-ab466bb8-ff75-4271-b4e6-014cda43391b.webp", alt: "3bhk" },
-                  { type: "4 BHK", img: "https://image2url.com/r2/default/images/1775587018708-732efb18-f374-41d6-a387-5fd471436f4a.webp", alt: "4bhk" },
+                  { type: "3 BHK", img: "https://image2url.com/r2/default/images/1775586904581-ab466bb8-ff75-4271-b4e6-014cda43391b.webp", alt: "Eldeco Echoes of Eden 3 BHK floor plan" },
+                  { type: "4 BHK", img: "https://image2url.com/r2/default/images/1775587018708-732efb18-f374-41d6-a387-5fd471436f4a.webp", alt: "Eldeco Echoes of Eden 4 BHK floor plan" },
                 ].map(({ type, img, alt }) => (
                   <div key={type} className="col-lg-4 col-md-6 fpBox">
                     <div className="inner">
-                      <button
-                        style={{ all: "unset", cursor: "pointer", display: "block" }}
-                        onClick={() => setShowModal(true)}
-                      >
+                      <button style={{ all: "unset", cursor: "pointer", display: "block" }} onClick={() => setShowModal(true)}>
                         <div className="img-fluid">
-                          <img style={{ filter: "blur(4px)" }} src={img} alt={alt} />
+                          <img style={{ filter: "blur(4px)" }} src={img} alt={alt} loading="lazy" />
                         </div>
                       </button>
                       <div className="planBase">
                         <div className="fpDetails">
                           <small>Type</small>
-                          <h6 className="mb-0 text-primary">{type}</h6>
+                          <h3 className="mb-0 text-primary" style={{ fontSize: "1.1rem" }}>{type} – Eldeco Echoes of Eden</h3>
                         </div>
                       </div>
                       <div className="readmore mt-0">
                         <button className="button" onClick={() => setShowModal(true)}>
                           <div className="downIcon">
-                            <img src="./eldeco-echoes/images/download.gif" alt="" />
+                            <img src="./eldeco-echoes/images/download.gif" alt="" aria-hidden="true" />
                           </div>
                           Download Floor Plan
                         </button>
@@ -1831,32 +2051,34 @@ function EldecoEchoesOfEden() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* ── Tagline ── */}
         <div
           className="w-100 padding position-relative overflow-hidden bg-image"
           style={{ backgroundImage: `url(${TaglineBg})`, height: "60vh" }}
+          aria-hidden="true"
         >
           <div className="container-lg h-100 d-flex align-items-center justify-content-center">
             <div className="tagline" data-aos="fade-up">
               <span className="text-serif fs-3">
                 Welcome to Eldeco Echoes of Eden — a thoughtfully curated residential destination
-                where nature, luxury, and modern living come together in perfect harmony.
+                where nature, luxury, and modern living come together in perfect harmony on the
+                Yamuna Expressway, Greater Noida.
               </span>
             </div>
           </div>
         </div>
 
         {/* ── Price List ── */}
-        <div className="w-100 padding position-relative overflow-hidden" id="pricelist">
+        <section className="w-100 padding position-relative overflow-hidden" id="pricelist" aria-label="Price List">
           <div className="container">
             <div className="heading">
               <h2 className="h1 text-primary text-uppercase mb-0">Price List</h2>
-              <h4 className="h4 text-uppercase mb-0">Eldeco Echoes of Eden</h4>
+              <p className="h4 text-uppercase mb-0">Eldeco Echoes of Eden – Sector 22D, Yamuna Expressway</p>
             </div>
             <div className="table-responsive">
-              <table className="table text-center table-pricing table-bordered">
+              <table className="table text-center table-pricing table-bordered" aria-label="Eldeco Echoes of Eden price list">
                 <thead>
                   <tr>
                     <th className="bg-primary text-white" width="30%">Type</th>
@@ -1867,7 +2089,7 @@ function EldecoEchoesOfEden() {
                 <tbody>
                   {["3 BHK", "4 BHK"].map((t) => (
                     <tr key={t}>
-                      <td>{t}</td>
+                      <td>{t} – Eldeco Echoes of Eden</td>
                       <td>On Request</td>
                       <td className="readmore mt-0">
                         <button className="button mx-auto" onClick={() => setShowModal(true)}>
@@ -1880,19 +2102,20 @@ function EldecoEchoesOfEden() {
               </table>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* ── Gallery ── */}
-        <div
+        <section
           className="w-100 padding position-relative overflow-hidden amenitiesWrapper bg-light"
           id="gallery"
+          aria-label="Gallery"
         >
           <div className="container-lg">
             <div className="swiper gallerySlider" data-aos="fade-up">
               <div className="headingContainer">
                 <div className="heading mb-0">
                   <h2 className="h1 text-primary mb-0">A Glimpse of</h2>
-                  <h4 className="h4 mb-0">Ultra luxury lifestyle</h4>
+                  <p className="h4 mb-0">Ultra luxury lifestyle – Eldeco Echoes of Eden</p>
                 </div>
                 <div className="bottomControls">
                   <div className="swiper-button-prev" />
@@ -1902,16 +2125,18 @@ function EldecoEchoesOfEden() {
               <div className="swiper-wrapper">
                 {galleryImages.map((src, i) => (
                   <div key={i} className="swiper-slide galBox">
-                    <div className="inner"><img src={src} alt="Gallery" /></div>
+                    <div className="inner">
+                      <img src={src} alt={`Eldeco Echoes of Eden gallery image ${i + 1}`} loading="lazy" />
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* ── Location ── */}
-        <div className="w-100" id="location">
+        <section className="w-100" id="location" aria-label="Location">
           <div className="w-100 padding overflow-hidden bg-sec hm-entertainmentContainer">
             <div className="container-lg">
               <div className="row g-4 justify-content-center">
@@ -1919,23 +2144,22 @@ function EldecoEchoesOfEden() {
                   <div className="inner text-center">
                     <div className="heading mx-auto">
                       <h2 className="h1 text-primary">Location Advantages</h2>
-                      <h4 className="mb-0">
-                        <i className="fa fa-map-marker-alt text-primary" /> Sector 22D Yamuna Expressway
-                      </h4>
+                      <p className="mb-0">
+                        <i className="fa fa-map-marker-alt text-primary" />{" "}
+                        <strong>Sector 22D, Yamuna Expressway, Greater Noida</strong> – Near Noida International Airport (Jewar)
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="col-lg-5 location-img" data-aos="fade-right">
-                  <button
-                    style={{ all: "unset", cursor: "pointer", display: "block", height: "100%" }}
-                    onClick={() => setShowModal(true)}
-                  >
+                  <button style={{ all: "unset", cursor: "pointer", display: "block", height: "100%" }} onClick={() => setShowModal(true)}>
                     <img
                       style={{ filter: "blur(7px)" }}
                       src={Loc}
                       className="h-100 object-fit-cover locationmap"
-                      alt="Location Map"
+                      alt="Eldeco Echoes of Eden location map – Sector 22D Yamuna Expressway near Jewar Airport"
+                      loading="lazy"
                     />
                   </button>
                 </div>
@@ -1977,7 +2201,9 @@ function EldecoEchoesOfEden() {
                     ].map(({ title, items }) => (
                       <div key={title} className="col-sm-6 locBox">
                         <div className="inner">
-                          <h5 className="text-serif text-primary"><b>{title}</b></h5>
+                          <h3 className="text-serif text-primary" style={{ fontSize: "1.1rem" }}>
+                            <b>{title}</b>
+                          </h3>
                           <ul className="list-unstyled list">
                             {items.map((item) => <li key={item}>{item}</li>)}
                           </ul>
@@ -1989,52 +2215,50 @@ function EldecoEchoesOfEden() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* ── Enquiry Section ── */}
-        <div className="w-100 padding enquiryWrapper">
+        <section className="w-100 padding enquiryWrapper" aria-label="Enquiry Form">
           <div className="container-lg">
             <div className="formContainer shadow-lg" data-aos="fade-up">
               <div className="row g-0">
-
-                {/* ② Bottom enquiry form — source: "Enquiry Section" */}
                 <div className="col-lg-7 enquiry-form">
                   <div className="inner">
                     <div className="heading">
                       <h2 className="h1 text-primary">Enquire Now</h2>
-                      <h4 className="mb-0">
-                        To know more about the project, please fill the form
-                      </h4>
+                      <p className="mb-0">
+                        Interested in Eldeco Echoes of Eden? Fill the form for price, floor plans &amp; site visit.
+                      </p>
                     </div>
-                    <EnquiryForm
-                      formId="enquiryForm2"
-                      requireEmail
-                      source="Enquiry Section"
-                    />
+                    <EnquiryForm formId="enquiryForm2" requireEmail source="Enquiry Section" />
                   </div>
                 </div>
-
                 <div className="col-lg-5 form-img">
-                  <img src={FormSide} className="h-100 object-cover" alt="" />
+                  <img src={FormSide} className="h-100 object-cover" alt="Eldeco Echoes of Eden luxury apartment interiors" loading="lazy" />
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* ── Footer ── */}
-        <div className="w-100 footer bg-primary">
+        <footer className="w-100 footer bg-primary" role="contentinfo">
           <div className="container-lg">
             <div className="row g-4 text-center align-items-center">
               <div className="col-md-6">
                 <p style={{ color: "#fff" }}>
                   Project RERA No.: UPRERAPRJ125342/02/2026
-                  <br />
-                  <br />
-                  <p>Disclaimer - Authorized marketing partner with Eldeco Builders. The content provided on this website is for information purposes only and does not constitute an offer to avail any service. The prices mentioned are subject to change without prior notice, and the availability of properties mentioned is not guaranteed.
-
-The images displayed on the website are for representation purposes only and may not reflect the actual properties accurately. Please note that this is the official website of an authorized marketing partner. We may share data with Real Estate Regulatory Authority (RERA) registered brokers/companies for further processing as required. We may also send updates and information to the mobile number or email ID registered with us. All rights reserved. The content, design, and information on this website are protected by copyright and other intellectual property rights. Any unauthorized use or reproduction of the content may violate applicable laws. For accurate and up-to-date information regarding services, pricing, availability, and any other details, it is advisable to contact us directly through the provided contact information on this website. Thank you for visiting our website.</p>
-                  <a href="https://up-rera.in/projects/" target="_blank" rel="noreferrer">
+                  <br /><br />
+                  <small>
+                    Disclaimer – Authorized marketing partner with Eldeco Builders. The content provided on
+                    this website is for information purposes only and does not constitute an offer to avail
+                    any service. Prices are subject to change without prior notice. Images are for
+                    representation purposes only. This is the official website of an authorized marketing
+                    partner. We may share data with RERA-registered brokers/companies for further processing.
+                    All rights reserved.
+                  </small>
+                  <br /><br />
+                  <a href="https://up-rera.in/projects/" target="_blank" rel="noreferrer" style={{ color: "#fff" }}>
                     https://up-rera.in/projects/
                   </a>
                   <br />
@@ -2045,7 +2269,8 @@ The images displayed on the website are for representation purposes only and may
               </div>
               <div className="col-md-6">
                 <p style={{ color: "#fff" }}>
-                  <img src={QR} style={{ width: "100px" }} alt="QR Code" />
+                  <img src={QR} style={{ width: "100px" }} alt="Scan QR to enquire about Eldeco Echoes of Eden" loading="lazy" />
+                  <br /><small>Scan to enquire</small>
                 </p>
               </div>
             </div>
@@ -2054,10 +2279,13 @@ The images displayed on the website are for representation purposes only and may
           <div
             className={`button-top ${showScrollTop ? "visible" : ""}`}
             onClick={scrollTop}
+            role="button"
+            aria-label="Scroll to top"
+            tabIndex={0}
           >
             <i className="fa fa-chevron-up" />
           </div>
-        </div>
+        </footer>
 
         {/* ── Mobile CTA Bar ── */}
         <div className="footer-enquiryBtn d-flex d-sm-none">
@@ -2065,10 +2293,11 @@ The images displayed on the website are for representation purposes only and may
             className="whatsCall"
             href="https://api.whatsapp.com/send?phone=+919355019172&text=Hi I am Interested in Eldeco Echoes of Eden, Please Share The Details."
             target="_blank" rel="noreferrer"
+            aria-label="WhatsApp enquiry for Eldeco Echoes of Eden"
           >
             <strong><i className="fab fa-whatsapp" /> WhatsApp</strong>
           </a>
-          <a href="tel:9899911553">
+          <a href="tel:9899911553" aria-label="Call for Eldeco Echoes of Eden">
             <strong><i className="fa fa-phone" /> Call</strong>
           </a>
           <button style={{ all: "unset", cursor: "pointer" }} onClick={() => setShowModal(true)}>
@@ -2083,6 +2312,8 @@ The images displayed on the website are for representation purposes only and may
             style={{ display: "block", background: "rgba(0,10,12,0.95)", backdropFilter: "blur(5px)" }}
             tabIndex="-1"
             role="dialog"
+            aria-modal="true"
+            aria-label="Enquiry popup – Eldeco Echoes of Eden"
           >
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content" style={{ position: "relative" }}>
@@ -2091,12 +2322,8 @@ The images displayed on the website are for representation purposes only and may
                     type="button"
                     className="close d-flex align-items-center justify-content-center"
                     onClick={() => setShowModal(false)}
-                    style={{
-                      position: "absolute", top: -10, right: -10,
-                      width: 40, height: 40, zIndex: 1,
-                      color: "maroon", border: 0, backgroundColor: "#fff",
-                      fontSize: 35, cursor: "pointer",
-                    }}
+                    aria-label="Close enquiry form"
+                    style={{ position: "absolute", top: -10, right: -10, width: 40, height: 40, zIndex: 1, color: "maroon", border: 0, backgroundColor: "#fff", fontSize: 35, cursor: "pointer" }}
                   >
                     ×
                   </button>
@@ -2104,22 +2331,16 @@ The images displayed on the website are for representation purposes only and may
                 <div className="row g-0">
                   <div className="col-md-12">
                     <div className="modal-details">
-                      <h5 className="mb-0">Eldeco Echoes of Eden</h5>
-                      <h5 className="banner-price mb-1">
-                        <i className="fa-solid fa-location-dot" /> Sector 22D Yamuna Expressway
-                      </h5>
+                      <h2 style={{ fontSize: "1.2rem" }} className="mb-0">Eldeco Echoes of Eden</h2>
+                      <p className="banner-price mb-1">
+                        <i className="fa-solid fa-location-dot" /> Sector 22D, Yamuna Expressway, Greater Noida
+                      </p>
                     </div>
                   </div>
-
-                  {/* ③ Modal form — source: "Modal Popup" */}
                   <div className="col-md-12">
                     <div className="modal-body">
-                      <h5 className="mb-3 text-serif text-center">Express Your Interest</h5>
-                      <EnquiryForm
-                        formId="enquiryForm3"
-                        requireEmail
-                        source="Modal Popup"
-                      />
+                      <h3 style={{ fontSize: "1.1rem" }} className="mb-3 text-serif text-center">Express Your Interest</h3>
+                      <EnquiryForm formId="enquiryForm3" requireEmail source="Modal Popup" />
                     </div>
                   </div>
                 </div>
@@ -2132,13 +2353,12 @@ The images displayed on the website are for representation purposes only and may
   );
 }
 
-/* ─── App Component with Router ─────────────────────────────────────────────── */
+/* ─── App Component with Router ─────────────────────────────────────────── */
 export default function App() {
   return (
-    
-      <Routes>
-        <Route path="/" element={<EldecoEchoesOfEden />} />
-        <Route path="/privacy-policy" element={<Privacy />} />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<EldecoEchoesOfEden />} />
+      <Route path="/privacy-policy" element={<Privacy />} />
+    </Routes>
   );
 }
