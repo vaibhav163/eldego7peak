@@ -1110,6 +1110,7 @@ import Loc from "../../eldeco-echoes/images/loc.jpg";
 import Side from "../../eldeco-echoes/images/side.jpg";
 import QR from "../../eldeco-echoes/images/qr.webp";
 import Privacy from "./privacypolicy.jsx";
+// import Edenhome from "./edenhome.jsx";
 
 /* ─── Inline styles ─── */
 const styles = `
@@ -1890,7 +1891,8 @@ function EldecoEchoesOfEden() {
                 alt="Eldeco Echoes of Eden – Luxury 3/4 BHK Residences at Sector 22D Yamuna Expressway, Greater Noida"
                 loading="eager"
               />
-            </picture>
+            </picture> 
+            {/* <Edenhome /> */}
           </div>
         </div>
 
