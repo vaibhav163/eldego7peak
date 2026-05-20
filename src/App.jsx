@@ -83,6 +83,7 @@ import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Eoe from "./components/eoe";
 import Privacypolicy from "./components/privacypolicy.jsx";
 import Edenhome from "./components/edenhome.jsx";
+import Eoes from "./components/eoe1.jsx";
 
 function Home({ onEnquire }) {
   return (
@@ -97,11 +98,9 @@ function Home({ onEnquire }) {
       <Location />
       <Footer />
       <FloatingBar onEnquire={onEnquire} />*/}
-      <FloatingWhatsApp
-        phoneNumber="919899911553"
-        message="Hi, I am interested in your services"
-      />
-      <Eoe /> 
+      {/* <Eoe />  */}
+      <Eoes />
+      <FloatingWhatsApp/>
       <Edenhome onEnquire={onEnquire} />
     </>
   );

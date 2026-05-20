@@ -14,8 +14,8 @@
 // import G4 from "../../eldeco-echoes/images/g4.jpg";
 // import Ab from "../../eldeco-echoes/images/3-b.webp";
 // import Bb from "../../eldeco-echoes/images/4-b.webp";
-// import BannerMobile from "../../eldeco-echoes/images/mobile.jpeg";
-// import BannerDesktop from "../../eldeco-echoes/images/desktop.jpeg";
+// import Mobileeoe from "../../eldeco-echoes/images/mobile.jpeg";
+// import Desktopeoe from "../../eldeco-echoes/images/desktop.jpeg";
 // import AmenityBg from "../../eldeco-echoes/images/amen.jpeg";
 // import TaglineBg from "../../eldeco-echoes/images/bgg.jpeg";
 // import FormSide from "../../eldeco-echoes/images/side.jpg";
@@ -630,8 +630,8 @@
 //         <div id="banner" className="banner">
 //           <div className="h-100">
 //             <picture>
-//               <source media="(max-width:560px)" srcSet={BannerMobile} />
-//               <img src={BannerDesktop} className="h-100 object-cover" alt="Banner" />
+//               <source media="(max-width:560px)" srcSet={Mobileeoe} />
+//               <img src={Desktopeoe} className="h-100 object-cover" alt="Banner" />
 //             </picture>
 //           </div>
 //         </div>
@@ -1110,6 +1110,8 @@ import Loc from "../../eldeco-echoes/images/loc.jpg";
 import Side from "../../eldeco-echoes/images/side.jpg";
 import QR from "../../eldeco-echoes/images/qr.webp";
 import Privacy from "./privacypolicy.jsx";
+import Desktopeoe from "../../eldeco-echoes/images/desktopvieweoe.png";
+import Mobileeoe from "../../eldeco-echoes/images/mobilevieweoe.png"; 
 // import Edenhome from "./edenhome.jsx";
 
 /* ─── Inline styles ─── */
@@ -1884,9 +1886,9 @@ function EldecoEchoesOfEden() {
         <div id="banner" className="banner" role="banner">
           <div className="h-100">
             <picture>
-              <source media="(max-width:560px)" srcSet={BannerMobile} />
+              <source media="(max-width:560px)" srcSet={Mobileeoe} />
               <img
-                src={BannerDesktop}
+                src={Desktopeoe}
                 className="h-100 object-cover"
                 alt="Eldeco Echoes of Eden – Luxury 3/4 BHK Residences at Sector 22D Yamuna Expressway, Greater Noida"
                 loading="eager"
