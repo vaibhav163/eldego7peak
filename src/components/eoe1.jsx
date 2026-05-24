@@ -118,7 +118,7 @@ function useSEO() {
       "name": "Eldeco Echoes of Eden",
       "description": "Premium 3 & 4 BHK luxury residences at Sector 22D, Yamuna Expressway. RERA: UPRERAPRJ125342/02/2026.",
       "url": `${SITE_URL}/`,
-      "telephone": "+919821598950",
+      "telephone": "+918799756026",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Sector 22D", "addressLocality": "Yamuna Expressway",
@@ -178,7 +178,7 @@ function EnquiryForm({ formId, requireEmail = false, source = "Website", darkBg 
       setValues(INIT);
       if (window.gtag) window.gtag("event", "conversion", { send_to: "AW-18122446172/VeIkCMGpqqMcENyqusFD", value: 50.0, currency: "INR" });
       setTimeout(() => {
-        window.open(`https://wa.me/919821598950?text=Hi%2C+I+just+enquired+about+Eldeco+Echoes+of+Eden+(${encodeURIComponent(source)}).+Please+share+details.`, "_blank");
+        window.open(`https://wa.me/918799756026?text=Hi%2C+I+just+enquired+about+Eldeco+Echoes+of+Eden+(${encodeURIComponent(source)}).+Please+share+details.`, "_blank");
       }, 900);
     } catch {
       setStatus({ text: "❌ Couldn't send. Please call us directly.", type: "error" });
@@ -925,8 +925,8 @@ function EldecoEchoesOfEden() {
             </ul>
           </nav>
           <div className="cta-header d-none d-lg-flex">
-            <a href="tel:9821598950" className="btn-call"><i className="fa fa-phone" /> Call Now</a>
-            <a href="https://api.whatsapp.com/send?phone=+919821598950&text=Hi! I am interested in Eldeco Echoes of Eden. Please share details."
+            <a href="tel:8799756026" className="btn-call"><i className="fa fa-phone" /> Call Now</a>
+            <a href="https://api.whatsapp.com/send?phone=+918799756026&text=Hi! I am interested in Eldeco Echoes of Eden. Please share details."
                target="_blank" rel="noreferrer" className="btn-wa">
               <i className="fab fa-whatsapp" /> WhatsApp
             </a>
@@ -1429,7 +1429,7 @@ function EldecoEchoesOfEden() {
                 <img src={QR} style={{ width: "90px", display: "inline-block" }}
                   alt="Scan QR to enquire about Eldeco Echoes of Eden" loading="lazy" />
                 <p style={{ marginTop: "8px", fontSize: "11px", opacity: 0.5 }}>Scan to enquire instantly</p>
-                <a href="tel:9821598950" style={{ display: "block", color: "#7DFFB3", fontWeight: 700, fontSize: "18px", marginTop: "8px" }}>
+                <a href="tel:8799756026" style={{ display: "block", color: "#7DFFB3", fontWeight: 700, fontSize: "18px", marginTop: "8px" }}>
                   +91 9899 91 1553
                 </a>
               </div>
@@ -1450,7 +1450,7 @@ function EldecoEchoesOfEden() {
           <a className="mcta-wa" href="https://api.whatsapp.com/send?phone=+919355019172&text=Hi I am Interested in Eldeco Echoes of Eden, Please Share The Details." target="_blank" rel="noreferrer" aria-label="WhatsApp">
             <i className="fab fa-whatsapp" /> WhatsApp
           </a>
-          <a className="mcta-call" href="tel:9821598950" aria-label="Call us">
+          <a className="mcta-call" href="tel:8799756026" aria-label="Call us">
             <i className="fa fa-phone" /> Call
           </a>
           <button className="mcta-enq" onClick={() => setShowModal(true)} aria-label="Enquire now">
@@ -1460,7 +1460,7 @@ function EldecoEchoesOfEden() {
 
         {/* ── Floating WhatsApp ── */}
         <a className="fab-wa d-none d-sm-flex"
-          href="https://api.whatsapp.com/send?phone=+919821598950&text=Hi! I am interested in Eldeco Echoes of Eden."
+          href="https://api.whatsapp.com/send?phone=+918799756026&text=Hi! I am interested in Eldeco Echoes of Eden."
           target="_blank" rel="noreferrer" aria-label="WhatsApp us">
           <i className="fab fa-whatsapp" />
         </a>

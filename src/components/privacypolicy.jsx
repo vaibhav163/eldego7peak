@@ -82,7 +82,7 @@ We may update this Privacy Policy from time to time. Changes will be posted on t
 If you have any questions regarding this Privacy Policy, please contact:
 
 Email: ninewallreality@gmail.com
-Phone: 9821598950
+Phone: 8799756026
 Address: Add: office no. - S-09 , 6th floor , Urbtech NPX, Sec 153, Noida , UP 201310
     </div>
   )

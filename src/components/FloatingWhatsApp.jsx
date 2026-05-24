@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from "react";
 
-const WHATSAPP_NUMBER = "919821598950";
+const WHATSAPP_NUMBER = "918799756026";
 const WHATSAPP_MSG    = "Hi! I am interested in Eldeco Echoes of Eden (Sector 22D, Yamuna Expressway). Please share the latest price list and floor plans.";
 
 export default function FloatingWhatsApp() {
