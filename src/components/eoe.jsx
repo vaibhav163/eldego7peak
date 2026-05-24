@@ -340,7 +340,7 @@
 //       // Open WhatsApp after a short delay so the user sees the success message
 //       setTimeout(() => {
 //         window.open(
-//           `https://wa.me/919899911553?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20for%20Eldeco%20Echoes%20of%20Eden%20from%20the%20${encodeURIComponent(source)}%20form.`,
+//           `https://wa.me/919821598950?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20for%20Eldeco%20Echoes%20of%20Eden%20from%20the%20${encodeURIComponent(source)}%20form.`,
 //           "_blank"
 //         );
 //       }, 800);
@@ -587,7 +587,7 @@
 //               <ul className="list-inline justify-content-end align-items-center">
 //                 <li>
 //                   <a
-//                     href="tel:9899911553"
+//                     href="tel:9821598950"
 //                     style={{
 //                       backgroundColor: "var(--whatsapp)", color: "#fff",
 //                       padding: "6px", marginLeft: "1.5rem", borderRadius: "40px",
@@ -599,7 +599,7 @@
 //                 </li>
 //                 <li>
 //                   <a
-//                     href="https://api.whatsapp.com/send?phone=+919899911553&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details."
+//                     href="https://api.whatsapp.com/send?phone=+919821598950&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details."
 //                     target="_blank" rel="noreferrer" className="whatsappBtn"
 //                   >
 //                     Get details on <i className="fab fa-whatsapp" />
@@ -1009,7 +1009,7 @@
 //           >
 //             <strong><i className="fab fa-whatsapp" /> WhatsApp</strong>
 //           </a>
-//           <a href="tel:9899911553">
+//           <a href="tel:9821598950">
 //             <strong><i className="fa fa-phone" /> Call</strong>
 //           </a>
 //           <button style={{ all: "unset", cursor: "pointer" }} onClick={() => setShowModal(true)}>
@@ -1494,7 +1494,7 @@ function useSEO() {
       "description":
         "Premium 3 BHK and 4 BHK luxury residences by Eldeco Group at Sector 22D, Yamuna Expressway, Greater Noida. 15 minutes from Noida International Airport (Jewar Airport). RERA No. UPRERAPRJ125342/02/2026.",
       "url": `${SITE_URL}/`,
-      "telephone": "+919899911553",
+      "telephone": "+919821598950",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Sector 22D",
@@ -1529,7 +1529,7 @@ function useSEO() {
       "logo": `${SITE_URL}/eldeco-echoes/images/eldeco.webp`,
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91-9899911553",
+        "telephone": "+91-9821598950",
         "contactType": "sales",
         "areaServed": "IN",
         "availableLanguage": ["English", "Hindi"],
@@ -1589,7 +1589,7 @@ function useSEO() {
         {
           "@type": "Question",
           "name": "How do I book a site visit for Eldeco Echoes of Eden?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Fill the enquiry form on this page, call +91-9899911553, or WhatsApp us for instant assistance." },
+          "acceptedAnswer": { "@type": "Answer", "text": "Fill the enquiry form on this page, call +91-9821598950, or WhatsApp us for instant assistance." },
         },
       ],
     });
@@ -1600,7 +1600,7 @@ function useSEO() {
       "@type": "RealEstateAgent",
       "name": "Eldeco Echoes of Eden – Authorised Marketing Partner",
       "image": SITE_IMAGE,
-      "telephone": "+919899911553",
+      "telephone": "+919821598950",
       "url": `${SITE_URL}/`,
       "address": {
         "@type": "PostalAddress",
@@ -1692,7 +1692,7 @@ function EnquiryForm({ formId, requireEmail = false, source = "Website" }) {
       setValues(INITIAL);
       setTimeout(() => {
         window.open(
-          `https://wa.me/919899911553?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20for%20Eldeco%20Echoes%20of%20Eden%20from%20the%20${encodeURIComponent(source)}%20form.`,
+          `https://wa.me/919821598950?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20for%20Eldeco%20Echoes%20of%20Eden%20from%20the%20${encodeURIComponent(source)}%20form.`,
           "_blank"
         );
       }, 800);
@@ -1852,12 +1852,12 @@ function EldecoEchoesOfEden() {
             <div className="topHead cta-box d-none d-lg-block">
               <ul className="list-inline justify-content-end align-items-center">
                 <li>
-                  <a href="tel:9899911553" aria-label="Call us" style={{ backgroundColor: "var(--whatsapp)", color: "#fff", padding: "6px", marginLeft: "1.5rem", borderRadius: "40px", flexDirection: "row", width: "100px" }}>
+                  <a href="tel:9821598950" aria-label="Call us" style={{ backgroundColor: "var(--whatsapp)", color: "#fff", padding: "6px", marginLeft: "1.5rem", borderRadius: "40px", flexDirection: "row", width: "100px" }}>
                     <i className="fa fa-phone" /> Call
                   </a>
                 </li>
                 <li>
-                  <a href="https://api.whatsapp.com/send?phone=+919899911553&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details." target="_blank" rel="noreferrer" className="whatsappBtn" aria-label="WhatsApp us">
+                  <a href="https://api.whatsapp.com/send?phone=+919821598950&text=Hi! I am interested in Eldeco Echoes of Eden, please share the details." target="_blank" rel="noreferrer" className="whatsappBtn" aria-label="WhatsApp us">
                     Get details on <i className="fab fa-whatsapp" />
                   </a>
                 </li>
@@ -2301,7 +2301,7 @@ function EldecoEchoesOfEden() {
           >
             <strong><i className="fab fa-whatsapp" /> WhatsApp</strong>
           </a>
-          <a href="tel:9899911553" aria-label="Call for Eldeco Echoes of Eden">
+          <a href="tel:9821598950" aria-label="Call for Eldeco Echoes of Eden">
             <strong><i className="fa fa-phone" /> Call</strong>
           </a>
           <button style={{ all: "unset", cursor: "pointer" }} onClick={() => setShowModal(true)}>
