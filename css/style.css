@@ -73,6 +73,12 @@ section{padding:52px 0}section.band{background:var(--bg)}h2{font-size:1.7rem;mar
 .cookie-banner{position:fixed;left:12px;right:12px;bottom:64px;background:#fff;border:1px solid #d8ded9;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:16px;z-index:70;max-width:560px}
 .cookie-actions{display:flex;gap:10px;margin-top:8px}.link-btn{background:none;border:none;color:var(--green);text-decoration:underline;cursor:pointer;font:inherit}
 .toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:12px 20px;border-radius:999px;z-index:80}
+.float-cta{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:65}
+.float-cta a{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.28);transition:transform .2s ease}
+.float-cta a:hover{transform:translateY(-2px)}
+.float-cta .fc-call{background:#12312a}
+.float-cta .fc-wa{background:#25d366}
+@media(max-width:900px){.float-cta{display:none}}
 @media(max-width:900px){.nav-row{gap:8px;padding:8px 10px}.logo{height:28px}.brand{gap:7px;min-width:0}.brand-text{font-size:.88rem;white-space:nowrap}.brand-text small{font-size:.6rem;white-space:normal;max-width:150px}.site-header .btn{flex:1 1 0;padding:8px 4px;font-size:.86rem;text-align:center}.two-col{grid-template-columns:1fr}.sticky-form{position:static}.foot-grid{grid-template-columns:1fr 1fr}.sticky-cta{display:flex}.main-nav{display:none}.hero h1{font-size:1.8rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 
