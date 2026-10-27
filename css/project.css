@@ -2,11 +2,11 @@
 /* ==== Project pages — design matched to the live eldecogrp.com project page ====
    Palette & type taken from the live site: Marcellus serif headings, Montserrat body,
    Eldeco green #02994a, deep green #123939, cream #fff7e8, ink #35312f. */
-body.proj{font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#35312f}
+body.proj{overflow-x:clip;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#35312f}
 body.proj h1,body.proj h2,body.proj h3,body.proj h4{font-family:'Marcellus',Georgia,serif;font-weight:400}
 body.proj .wrap{max-width:1200px}
 .p-sec{padding:4rem 0}
-.p-heading{font-size:2rem;text-transform:uppercase;letter-spacing:.5px;color:#02994a;margin:0 0 30px;position:relative;display:table}
+.p-heading{max-width:100%;font-size:2rem;text-transform:uppercase;letter-spacing:.5px;color:#02994a;margin:0 0 30px;position:relative;display:table}
 .p-heading::after{content:"";display:block;width:64px;height:3px;background:#02994a;margin-top:10px}
 .p-heading span{color:#02994a}
 .p-lead{font-size:1.02rem;line-height:1.75;color:#4a4742}
@@ -73,6 +73,7 @@ body.proj .rera-line{background:#fff7e8;border:1px solid #e5d9ae;border-radius:0
 .p-price-table{max-width:860px}
 .p-price-table th{background:#02994a;color:#fff;font-family:'Marcellus',serif;text-transform:uppercase;letter-spacing:.5px;border-color:#02994a}
 .p-price-table td{border:none;border-bottom:1px dashed rgba(0,0,0,.15);padding:14px 10px}
+.p-facts td,.p-price-table td{overflow-wrap:anywhere}
 .p-link{color:#02994a;font-weight:700;text-decoration:none;text-transform:uppercase;font-size:.85rem;letter-spacing:.5px}
 /* --- welcome photo band --- */
 .p-welcome{background-size:cover;background-position:center;position:relative;padding:6rem 16px}
@@ -106,12 +107,16 @@ body.proj .sticky-cta a{background:#123939;color:#fff;border-top:1px solid rgba(
 body.proj .sticky-cta a.wa{background:#02994a;color:#fff}
 body.proj .sticky-cta a.enq{background:#fff7e8;color:#123939}
 @media(max-width:900px){
- .p-sec{padding:3rem 0}
- .p-banner{min-height:auto;aspect-ratio:auto;padding:96px 14px 44px}
+ .p-sec{padding:2.4rem 0}
+ .p-banner{min-height:auto;aspect-ratio:auto;padding:64px 14px 40px}
  .p-banner-box{padding:2rem 1.2rem}
  .p-banner-box h1{font-size:1.9rem}
- .p-config-row{background:#02994a;padding:6px}
- .p-cfg-box{border-right:none;border-bottom:1px dashed rgba(255,255,255,.4);color:#fff}
+ .p-config-row{background:#02994a;padding:0;display:grid;grid-template-columns:1fr 1fr}
+ .p-cfg-box{border-right:none;border-bottom:1px dashed rgba(255,255,255,.35);color:#fff;padding:10px 12px}
+ .p-cfg-box h3{font-size:.68rem}.p-cfg-box p{font-size:.84rem}
+ .p-facts th{width:104px;font-size:.8rem}.p-facts th,.p-facts td{padding:9px 6px}
+ .p-fp-row{flex-wrap:wrap;row-gap:2px}
+ .p-welcome{padding:3.5rem 16px}
  .p-cfg-box h3{color:#ffe9a8}.p-cfg-box p{color:#fff}
  .p-heading{font-size:1.6rem}
  .p-aside{position:static}
