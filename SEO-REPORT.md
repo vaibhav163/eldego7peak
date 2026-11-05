@@ -40,3 +40,9 @@ Unique titles/meta, canonicals, OG/Twitter, BreadcrumbList + RealEstateListing s
 
 ## Still to do (site owner)
 Upload the package contents to the eldecogrp.com root, then submit sitemap.xml in Google Search Console and request indexing for the homepage and the 3 area pages. GA4 / Meta Pixel IDs remain placeholders in js/config.js.
+
+## Update — 2026-11-05 (indexing support)
+
+- All 16 completed-project pages enriched (~450 extra words each): expanded overview, a "Living in <sector>" locality section (qualitative sector context only — no invented distances or facts), a "Resale, Rental & Availability" section, and a visible FAQ section (4 questions) with matching FAQPage JSON-LD — FAQPage schema now present on the homepage and all 22 project pages (76 JSON-LD blocks site-wide, all validated).
+- Sitemap lastmod updated to 2026-11-05 for the 16 changed project URLs.
+- Reason: completed-project pages were thin compared with the 6 ongoing projects; richer, unique content improves their chances of moving from "Discovered/Crawled – currently not indexed" to Indexed.
