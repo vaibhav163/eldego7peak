@@ -7,20 +7,48 @@
     t.textContent = msg; t.hidden = false;
     setTimeout(function () { t.hidden = true; }, 4200);
   }
-  // ---- enquiry forms -> WhatsApp ----
+  // ---- enquiry forms -> EmailJS first, WhatsApp fallback ----
+  function sendEmailJS(params) {
+    var ej = cfg.emailjs || {};
+    if (!ej.serviceId || !ej.templateId || !ej.publicKey) return Promise.reject(new Error("emailjs not configured"));
+    var ctrl = ("AbortController" in window) ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 9000) : null;
+    return fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ service_id: ej.serviceId, template_id: ej.templateId, user_id: ej.publicKey, template_params: params }),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) { if (timer) clearTimeout(timer); if (!r.ok) throw new Error("emailjs " + r.status); return r; });
+  }
   document.querySelectorAll(".enquiry-form").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var d = new FormData(form);
       var project = form.getAttribute("data-project") || "Eldeco Group Projects";
-      var lines = ["Hi, I am interested in " + project + ".",
-        "Name: " + (d.get("name") || ""), "Mobile: " + (d.get("phone") || "")];
-      if (d.get("email")) lines.push("Email: " + d.get("email"));
-      if (d.get("interest")) lines.push("Interested in: " + d.get("interest"));
-      if (d.get("message")) lines.push("Message: " + d.get("message"));
+      var params = {
+        from_name: d.get("name") || "", phone: d.get("phone") || "",
+        email: d.get("email") || "", interest: d.get("interest") || "",
+        project: project, message: d.get("message") || "",
+        reply_to: d.get("email") || ""
+      };
       window.trackConversion && trackConversion("generate_lead", { project: project });
-      toast("Opening WhatsApp…");
-      window.open("https://wa.me/" + (cfg.whatsapp || "918799756026") + "?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+      var btn = form.querySelector("[type=submit]");
+      var oldLabel = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending\u2026"; }
+      function done() { if (btn) { btn.disabled = false; btn.textContent = oldLabel; } }
+      function waFallback() {
+        var lines = ["Hi, I am interested in " + project + ".",
+          "Name: " + params.from_name, "Mobile: " + params.phone];
+        if (params.email) lines.push("Email: " + params.email);
+        if (params.interest) lines.push("Interested in: " + params.interest);
+        if (params.message) lines.push("Message: " + params.message);
+        toast("Opening WhatsApp\u2026");
+        window.open("https://wa.me/" + (cfg.whatsapp || "918799756026") + "?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+      }
+      sendEmailJS(params).then(function () {
+        toast("Enquiry sent! We will call you back shortly.");
+        form.reset(); done();
+      }).catch(function () { done(); waFallback(); });
     });
   });
   // ---- homepage search + filters ----

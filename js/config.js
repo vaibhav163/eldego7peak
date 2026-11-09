@@ -6,7 +6,8 @@ window.SITE_CONFIG = {
   phoneIntl: "918799756026",          // WhatsApp / tel number for ALL leads
   whatsapp: "918799756026",
   ga4Id: "",                          // TODO: paste GA4 measurement ID (G-XXXXXXX)
-  metaPixelId: "",                    // TODO: paste Meta Pixel ID
+  metaPixelId: "",
+  emailjs: { serviceId: "service_fkmfynb", templateId: "template_bdjcyq6", publicKey: "xLfYDZXLlR6IeQ-C6" },   // enquiry forms email you first; WhatsApp is the automatic fallback                    // TODO: paste Meta Pixel ID
   // Central image map — replace any image by editing its path here / in assets/images/
   images: {
     logo: "/assets/images/logo/eldeco-logo.png",
